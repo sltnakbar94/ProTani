@@ -35,7 +35,7 @@ class AdminController extends Controller
 
     public function dashboardMap()
     {
-        $this->data['locations'] = OrderDetail::whereStatusOrder(1)->whereStatusTerima(1)->whereNotNull('lat')->whereNotNull('lng')->get();
+        $this->data['locations'] = NULL;
 
         return view(backpack_view('dashboard-map'), $this->data);
     }
