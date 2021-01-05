@@ -14,8 +14,5 @@ class DatabaseSeeder extends Seeder
         $this->call(IndonesianAdministrativeTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(SuperadminUserSeeder::class);
-        $this->call(DestinationTablesSeeder::class);
-        $this->call(ExpeditionTablesSeeder::class);
     }
 }
