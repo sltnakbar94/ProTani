@@ -29,27 +29,6 @@ class AdminController extends Controller
      */
     public function dashboard(Request $request)
     {
-        $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
-        $this->data['breadcrumbs'] = [
-            trans('backpack::crud.admin')     => backpack_url('dashboard'),
-            trans('backpack::base.dashboard') => false,
-        ];
-
-        $this->data['locations'] = [];
-
-        if($request->get('show_dashboard') == 'set_date') {
-            $this->showSelectedDate();
-        } else if($request->get('show_dashboard') == 'today') {
-            $this->showToday();
-        } else {
-            $this->showAll();
-        }
-
-        $this->renderModal();
-
-        $this->kpmData($request);
-
-        $this->listReceived();
 
         return view(backpack_view('dashboard'), $this->data);
     }
@@ -281,18 +260,18 @@ class AdminController extends Controller
                             ->orderBy('destination_id')
                             ->get();
 
-        
+
 
         foreach($ed as $row) {
             $response[$row->name]['expedition'] = $row->expedition_id;
             $response[$row->name]['name'] = $row->name;
             $response[$row->name]['quota'] = $row->quota;
             $query = OrderDetail::selectRaw("
-                                max(orders.ekspedisi) as ekspedisi, 
-                                order_details.tujuan, 
-                                max(destinations.quota) as kuota_paket, 
-                                sum(order_details.qty) as paket_keluar, 
-                                sum(order_details.jumlah_diterima) as paket_diterima, 
+                                max(orders.ekspedisi) as ekspedisi,
+                                order_details.tujuan,
+                                max(destinations.quota) as kuota_paket,
+                                sum(order_details.qty) as paket_keluar,
+                                sum(order_details.jumlah_diterima) as paket_diterima,
                                 (SELECT COUNT(DISTINCT(orders.id)) FROM orders JOIN order_details ON order_details.order_id = orders.id  WHERE ekspedisi = orders.ekspedisi AND order_details.tujuan = destinations.name) as total_truk,
                                 (max(destinations.quota) - sum(order_details.qty)) as sisa_paket
                                 ")
@@ -300,7 +279,7 @@ class AdminController extends Controller
                                 ->join('destinations', 'destinations.name', '=', 'order_details.tujuan')
                                 ->where('ekspedisi', $row->expedition_id)
                                 ->where('tujuan', $row->name);
-                                
+
             if($request->get('show_dashboard') == 'set_date') {
                 $query = $query->whereDate('orders.tanggal_kirim', $request->get('show_dashboard_date', date('Y-m-d')));
             } else if($request->get('show_dashboard') == 'today') {
@@ -314,7 +293,7 @@ class AdminController extends Controller
         }
 
 
-        
+
         $this->data['kpms'] = $response;
     }
 
