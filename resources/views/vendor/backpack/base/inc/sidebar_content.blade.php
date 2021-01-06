@@ -1,7 +1,7 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard-map') }}"><i class="fa fa-map nav-icon"></i> Peta Pengiriman</a></li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('salesform') }}'><i class='nav-icon la la-question'></i> SalesForms</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('salesform') }}'><i class='fa fa-check-square-o nav-icon'></i> Form Sales</a></li>
 
 @if(backpack_user()->hasRole('superadmin'))
 <li class="nav-item nav-dropdown">

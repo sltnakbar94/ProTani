@@ -88,22 +88,25 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'regencies',
-            'label'           => "Kecamatan",
-            'type'            => 'text',
+            'label'           => "Kota",
+            'type'            => 'select_from_array',
+            'options'         => $regencies->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'districts',
-            'label'           => "Kelurahan",
-            'type'            => 'text',
+            'label'           => "Kecamatan",
+            'type'            => 'select_from_array',
+            'options'         => $districts->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'villages',
-            'label'           => "Kota/Desa",
-            'type'            => 'text',
+            'label'           => "Kel/Desa",
+            'type'            => 'select_from_array',
+            'options'         => $villages->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
