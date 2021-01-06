@@ -24,5 +24,5 @@ Route::group([
     Route::crud('notification-user', 'NotificationUserCrudController');
     Route::crud('notification-message', 'NotificationMessageCrudController');
 
+    Route::crud('salesform', 'SalesFormCrudController');
 }); // this should be the absolute last line of this file
-
