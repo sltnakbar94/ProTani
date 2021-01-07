@@ -88,7 +88,7 @@
                             <table class="table no-border">
                                 <tr>
                                     <td>Foto KTP</td>
-                                    <td><img src="{{asset('storage/public/'.$crud->entry->idpict)}}" style="width:100%;height:100%;"></td>
+                                    <td><img src="{{asset('storage/public/'.$crud->entry->idpict)}}" style="width:100%"></td>
                                 </tr>
                             </table>
                         </div>
@@ -190,10 +190,10 @@
 
         $(document).ready(function(){
 
-            $('body').on('submit', '#form-order-detail-add', function(e){
+            $('body').on('submit', '#sales_form_detail_add', function(e){
                 e.preventDefault();
 
-                $('#add-buton-pod').attr('disabled', true)
+                $('#add-buton-kolam').attr('disabled', true)
 
                 var url = $(this).attr('action');
 
@@ -207,8 +207,8 @@
                             // close modal
                             // show notification
                             // reload
-                            $("#form-order-detail-add").trigger('reset');
-                            $("#addModalOrderDetail").modal('hide');
+                            $("#sales_form_detail_add").trigger('reset');
+                            $("#addModalSalesFormDetail").modal('hide');
                             window.open(response.url, '_blank');
                             window.location.reload();
                         }
@@ -217,7 +217,7 @@
                         if(xhr.responseJSON.success === false) {
                             $('#form-modal-alert').show();
                             $('#form-modal-alert').html(xhr.responseJSON.message);
-                            $('#add-buton-pod').attr('disabled', false)
+                            $('#add-buton-kolam').attr('disabled', false)
                         }
                     },
                 });

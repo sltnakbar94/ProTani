@@ -6,6 +6,7 @@ use App\Http\Requests\SalesFormRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 /**
  * Class SalesFormCrudController
@@ -63,6 +64,12 @@ class SalesFormCrudController extends CrudController
         $regencies = DB::table('regencies')->get();
         $districts = DB::table('districts')->get();
         $villages = DB::table('villages')->get();
+
+        $this->crud->addField([
+            'name' => 'user_id',
+            'type' => 'hidden',
+            'value' => Auth::id()
+        ]);
 
         $this->crud->addField([
             'name'            => 'farmer_name',

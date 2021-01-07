@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" id="form-modal-alert" style="display:none;">Data telah tersimpan</div>
-        <form action="{{ route('salesformdetail.store') }}" method="post" name="form_order_detail_add" id="form-order-detail-add">
+        <form action="{{ route('salesformdetail.store') }}" method="post" name="sales_form_detail_add" id="sales-form-detail-add">
             @csrf
             <input type="hidden" name="sales_form_id" value="{{ $crud->entry->id }}">
 
@@ -123,7 +123,7 @@
             <div class="form-group text-right">
                 <label for=""></label>
                 <button type="button" class="btn btn-default">RESET</button>
-                <button type="submit" class="btn btn-primary" id="add-buton-pod">SIMPAN</button>
+                <button type="submit" class="btn btn-primary" id="add-buton-kolam">SIMPAN</button>
             </div>
 
         </form>

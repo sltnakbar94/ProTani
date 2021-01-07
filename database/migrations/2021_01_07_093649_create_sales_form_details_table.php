@@ -16,6 +16,7 @@ class CreateSalesFormDetailsTable extends Migration
         Schema::create('sales_form_details', function (Blueprint $table) {
             $table->id();
             $table->integer('sales_form_id');
+            $table->integer('pool_number');
             $table->bigInteger('pool_large');
             $table->string('fish_type')->nullable();
             $table->date('plant_date')->nullable();
@@ -26,6 +27,7 @@ class CreateSalesFormDetailsTable extends Migration
             $table->string('status')->nullable()->default('0');
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

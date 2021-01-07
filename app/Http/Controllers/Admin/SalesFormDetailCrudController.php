@@ -6,6 +6,9 @@ use App\Http\Requests\SalesFormDetailRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\SalesFormDetail;
+use App\Jobs\ProcessResizeFormDetailImage;
+use Illuminate\Http\Request;
+use Auth;
 
 /**
  * Class SalesFormDetailCrudController
@@ -81,26 +84,30 @@ class SalesFormDetailCrudController extends CrudController
 
     public function store(SalesFormDetailRequest $request)
     {
-       $form_detail = SalesFormDetail::create([
-           'sales_form_id' => $request->sales_form_id,
-           'pool_large' => $this->generateNomorPengiriman($request),
-           'fish_type' => $request->tujuan,
-           'plant_date' => $request->qty,
-           'harvest_date' => $request->qty,
-           'harvest_qty' => $request->qty,
-           'sitepict' => $request->qty,
-           'result' => $request->qty,
-           'status' => $request->qty,
-           'lat' => Str::uuid()->toString(),
-           'lng' => Str::uuid()->toString(),
-           'user_id' => Auth::id(),
-       ]);
 
-        \Alert::add('success', 'Berhasil tambah data order ' . $form_detail->nomor_order)->flash();
-       return response()->json([
-           'success' => true,
-           'message' => 'Berhasil tambah data order ' . $form_detail->nomor_order,
-           'url' => route('orderdetail.show-qrcode', $form_detail->url)
-       ], 200);
+        $form_detail = new SalesFormDetail;
+        $form_detail->sales_form_id = $request->sales_form_id;
+        $form_detail->pool_number = $request->pool_number;
+        $form_detail->pool_large = $request->pool_large;
+        $form_detail->fish_type = $request->fish_type;
+        $form_detail->plant_date = $request->plant_date;
+        $form_detail->harvest_date = $request->harvest_date;
+        $form_detail->harvest_qty = $request->harvest_qty;
+        $form_detail->result = $request->result;
+        $form_detail->lat = $request->lat;
+        $form_detail->lng = $request->lng;
+        dd($request->hasFile('sitepict'));
+        if($request->hasFile('sitepict')) {
+            $file = $request->file('sitepict');
+            $path = $file->storeAs('form_details', strtolower($form_detail->sales_form_id) .'-' . date('Ymdhis') . '.' . $file->getClientOriginalExtension() , 'public');
+            $form_detail->sitepict = $path;
+        }
+        $form_detail->save();
+
+        if($request->hasFile('foto')) {
+            ProcessResizeFormDetailImage::dispatch($form_detail)->delay(now()->addSeconds(3));
+        }
+
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 }

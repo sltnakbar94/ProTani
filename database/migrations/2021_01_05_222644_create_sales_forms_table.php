@@ -29,6 +29,7 @@ class CreateSalesFormsTable extends Migration
             $table->text('site_address')->nullable();
             $table->integer('pool_qty')->nullable();
             $table->text('description')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
