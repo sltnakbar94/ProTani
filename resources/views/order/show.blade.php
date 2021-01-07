@@ -50,35 +50,35 @@
 	    @else
 	    @endif
 	    <div class="card no-padding no-border">
-            <div class="card-header">   
+            <div class="card-header">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="text-right">Tanggal Kirim: <strong>{{ $crud->entry->tanggal_kirim->format('d F Y') }}</strong></h6><br>
+                        <h6 class="text-right">Tanggal Kirim: <strong>{{ $crud->entry->created_at->format('d F Y') }}</strong></h6><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="table"> 
+                        <div class="table">
                             <table class="table no-border">
                                 <tr>
-                                    <td>Kode Truk</td>
-                                    <td><strong>{{ $crud->entry->kode_truk }}</strong></td>
+                                    <td>Nama Petani</td>
+                                    <td><strong>{{ $crud->entry->farmer_name }}</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Perusahaan</td>
-                                    <td><strong>{{ $crud->entry->perusahaan }}</strong></td>
+                                    <td>Nomor KTP</td>
+                                    <td><strong>{{ $crud->entry->id_number }}</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Ekpedisi</td>
-                                    <td><strong>{{ $crud->entry->ekspedisi }}</strong></td>
+                                    <td>No Telp.</td>
+                                    <td><strong>{{ $crud->entry->phone_number }}</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Tujuan Yang Diizinkan</td>
-                                    <td><strong>{{ $crud->entry->destination->destinations->pluck('name') }}</strong></td>
+                                    <td>Alamat</td>
+                                    <td>{{ $crud->entry->id_address }}, RT:{{ $crud->entry->rt }}/RW:{{ $crud->entry->rw }}, {{ $crud->entry->villages }}, {{ $crud->entry->districts }}, {{ $crud->entry->regencies }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Surat Jalan</td>
-                                    <td><strong>{{ $crud->entry->surat_jalan }}</strong></td>
+                                    <td>Provinsi</td>
+                                    <td>{{ $crud->entry->provinces }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -87,20 +87,8 @@
                         <div class="table">
                             <table class="table no-border">
                                 <tr>
-                                    <td>Driver</td>
-                                    <td><strong>{{ $crud->entry->nama_driver }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Nomor Polisi</td>
-                                    <td><strong>{{ $crud->entry->plat }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>HP Driver</td>
-                                    <td><strong>{{ $crud->entry->phone }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Total Jumlah</td>
-                                    <td><strong>{{ number_format($crud->entry->qty) }}</strong></td>
+                                    <td>Foto KTP</td>
+                                    <td><img src="{{asset('storage/public/'.$crud->entry->idpict)}}" style="width:100%;height:100%;"></td>
                                 </tr>
                             </table>
                         </div>
@@ -109,11 +97,11 @@
             </div>
 	    </div>
         <div class="card no-padding no-border">
-            <div class="card-header">   
+            <div class="card-header">
             <div class="row">
                 <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModalOrderDetail">
-                           <i class="fa fa-plus"></i> TAMBAH POD
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModalSalesFormDetail">
+                           <i class="fa fa-plus"></i> TAMBAH KOLAM
                         </button>
                     <br><br>
                 </div>
@@ -123,12 +111,14 @@
                         <div class="table">
                             <table class="table table-responsive">
                                 <tr>
-                                    <th>Nomor Pengiriman</th>
-                                    <th>Tujuan</th>
-                                    <th>Jumlah</th>
-                                    <th>Tanggal Dibuat</th>
+                                    <th>Nomor Kolam</th>
+                                    <th>Luas Kolam</th>
+                                    <th>Jenis Ikan</th>
+                                    <th>Mulai Penaburan</th>
+                                    <th>Target Panen</th>
                                     <th>Status</th>
-                                    <th>Status Penerima</th>
+                                    <th>Jumlah Hasil Panen</th>
+                                    <th>Foto</th>
                                     <th>Action</th>
                                 </tr>
                                 @if(isset($crud->entry->order_details))
@@ -172,7 +162,7 @@
                                     </tr>
                                 @else
                                 <tr>
-                                    <td colspan="5" class="text-center">Belum ada data order</td>
+                                    <td colspan="9" class="text-center">Belum ada data kolam</td>
                                 </tr>
                                 @endif
                             </table>
@@ -202,7 +192,7 @@
 
             $('body').on('submit', '#form-order-detail-add', function(e){
                 e.preventDefault();
-                
+
                 $('#add-buton-pod').attr('disabled', true)
 
                 var url = $(this).attr('action');
@@ -228,7 +218,7 @@
                             $('#form-modal-alert').show();
                             $('#form-modal-alert').html(xhr.responseJSON.message);
                             $('#add-buton-pod').attr('disabled', false)
-                        } 
+                        }
                     },
                 });
 
@@ -257,7 +247,7 @@
                         console.log('error!')
                     },
                 });
-                
+
             });
 
             $('body').on('submit', '#form-order-detail-edit', function(e){
@@ -284,7 +274,7 @@
                         if(xhr.responseJSON.success === false) {
                             $('#form-modal-alert').show();
                             $('#form-modal-alert').html(xhr.responseJSON.message);
-                        } 
+                        }
                     },
                 });
 

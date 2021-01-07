@@ -25,4 +25,5 @@ Route::group([
     Route::crud('notification-message', 'NotificationMessageCrudController');
 
     Route::crud('salesform', 'SalesFormCrudController');
+    Route::crud('salesformdetail', 'SalesFormDetailCrudController');
 }); // this should be the absolute last line of this file

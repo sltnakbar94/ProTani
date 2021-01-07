@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SalesFormRequest extends FormRequest
+class SalesFormDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +26,7 @@ class SalesFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'farmer_name' => 'required',
-            'id_number' => 'digits:16',
-            'id_address' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'villages' => 'required',
-            'districts' => 'required',
-            'regencies' => 'required',
-            'provinces' => 'required',
+            // 'name' => 'required|min:5|max:255'
         ];
     }
 

@@ -29,7 +29,8 @@ class SalesFormCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\SalesForm::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/salesform');
-        CRUD::setEntityNameStrings('salesform', 'Form Sales');
+        CRUD::setEntityNameStrings('Form Sales', 'Form Sales');
+        $this->crud->setShowView('order.show');
     }
 
     /**
@@ -71,6 +72,13 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name'            => 'id_number',
+            'label'           => "Nomor KTP",
+            'type'            => 'text',
+            'tab'             => 'Data Diri',
+        ]);
+
+        $this->crud->addField([
             'name'            => 'phone_number',
             'label'           => "Nomor HP Petani",
             'type'            => 'text',
@@ -82,31 +90,32 @@ class SalesFormCrudController extends CrudController
             'name'            => 'provinces',
             'label'           => "Provinsi",
             'type'            => 'select_from_array',
-            'options'         => $province->pluck('name'),
+            'options'         => $province->pluck('name', 'id'),
+            'allows_null'     => true,
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'regencies',
             'label'           => "Kota",
-            'type'            => 'select_from_array',
-            'options'         => $regencies->pluck('name'),
+            'type'            => 'text',
+            // 'options'         => $regencies->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'districts',
             'label'           => "Kecamatan",
-            'type'            => 'select_from_array',
-            'options'         => $districts->pluck('name'),
+            'type'            => 'text',
+            // 'options'         => $districts->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'villages',
             'label'           => "Kel/Desa",
-            'type'            => 'select_from_array',
-            'options'         => $villages->pluck('name'),
+            'type'            => 'text',
+            // 'options'         => $villages->pluck('name'),
             'tab'             => 'Data Diri',
         ]);
 
@@ -137,120 +146,10 @@ class SalesFormCrudController extends CrudController
             'type' => 'image',
             'tab'             => 'Data Diri',
             'crop' => true, // set to true to allow cropping, false to disable
+            'upload' => true,
             'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
             'disk'      => 'public', // in case you need to show images from a different disk
             // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'site_address',
-            'label'           => "Alamat Lokasi",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'pool_qty',
-            'label'           => "Jumlah Kolam",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'pool_large',
-            'label'           => "Luas Kolam",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'fish_type',
-            'label'           => "Jenis Ikan",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'plant_date',
-            'label'           => "Mulai Penebaran",
-            'type'            => 'date_picker',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'harvest_date',
-            'label'           => "Target Panen",
-            'type'            => 'date_picker',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'label' => "Foto Lokasi",
-            'name' => "sitepict1",
-            'type' => 'image',
-            'tab'             => 'Data Lokasi',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'label' => "Foto Lokasi",
-            'name' => "sitepict2",
-            'type' => 'image',
-            'tab'             => 'Data Lokasi',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'label' => "Foto Lokasi",
-            'name' => "sitepict3",
-            'type' => 'image',
-            'tab'             => 'Data Lokasi',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'label' => "Foto Lokasi",
-            'name' => "sitepict4",
-            'type' => 'image',
-            'tab'             => 'Data Lokasi',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'label' => "Foto Lokasi",
-            'name' => "sitepict5",
-            'type' => 'image',
-            'tab'             => 'Data Lokasi',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'lat',
-            'label'           => "lat",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'lng',
-            'label'           => "lng",
-            'type'            => 'text',
-            'tab'             => 'Data Lokasi',
         ]);
 
         $this->crud->addField([
