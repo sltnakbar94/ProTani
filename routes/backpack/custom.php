@@ -26,4 +26,5 @@ Route::group([
 
     Route::crud('salesform', 'SalesFormCrudController');
     Route::crud('salesformdetail', 'SalesFormDetailCrudController');
+    Route::crud('downloadsalesform', 'DownloadSalesFormCrudController');
 }); // this should be the absolute last line of this file

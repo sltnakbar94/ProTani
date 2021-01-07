@@ -23,8 +23,8 @@ class UsersTableSeeder extends Seeder
 
         $superadmin = User::create([
             'name' => 'Superadmin',
-            'email' => 'superadmin@bansoscovid19.id',
-            'password' => bcrypt('BANSOS123!@#')
+            'email' => 'superadmin@lumbungtani.org',
+            'password' => bcrypt('Ltani123!@#')
         ]);
 
         $superadmin->assignRole('superadmin');
