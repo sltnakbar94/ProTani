@@ -188,8 +188,22 @@
 
     <script>
 
-        $(document).ready(function(){
 
+            function getLocation() {
+            if (navigator.geolocation) {
+                console.log(navigator.geolocation.getCurrentPosition(showPosition))
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            }
+
+            function showPosition(position) {
+                document.getElementById('lat').value = position.coords.latitude;
+                document.getElementById('lng').value = position.coords.longitude;
+            }
+
+        $(document).ready(function(){
             $('body').on('submit', '#sales_form_detail_add', function(e){
                 e.preventDefault();
 
@@ -293,6 +307,9 @@
                 var c = confirm(text);
                 return c;
             });
+
+
+            getLocation();
         });
 
     </script>

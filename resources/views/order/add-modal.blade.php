@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" id="form-modal-alert" style="display:none;">Data telah tersimpan</div>
-        <form action="{{ route('salesformdetail.store') }}" method="post" name="sales_form_detail_add" id="sales-form-detail-add">
+        <form action="{{ route('salesformdetail.store') }}" enctype="multipart/form-data" method="post" name="sales_form_detail_add" id="sales-form-detail-add">
             @csrf
             <input type="hidden" name="sales_form_id" value="{{ $crud->entry->id }}">
 
@@ -134,8 +134,10 @@
 
 @push('after_scripts')
 <script>
+    alert('xxx')
     function getLocation() {
       if (navigator.geolocation) {
+          console.log(navigator.geolocation.getCurrentPosition(showPosition))
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
