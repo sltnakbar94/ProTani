@@ -131,26 +131,3 @@
     </div>
   </div>
 </div>
-
-@push('after_scripts')
-<script>
-    alert('xxx')
-    function getLocation() {
-      if (navigator.geolocation) {
-          console.log(navigator.geolocation.getCurrentPosition(showPosition))
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-
-    function showPosition(position) {
-        document.getElementById('lat').value = position.coords.latitude;
-        document.getElementById('lng').value = position.coords.longitude;
-    }
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-        getLocation()
-    });
-</script>
-@endpush
