@@ -96,7 +96,6 @@ class SalesFormDetailCrudController extends CrudController
         $form_detail->result = $request->result;
         $form_detail->lat = $request->lat;
         $form_detail->lng = $request->lng;
-        dd($request->hasFile('sitepict'));
         if($request->hasFile('sitepict')) {
             $file = $request->file('sitepict');
             $path = $file->storeAs('form_details', strtolower($form_detail->sales_form_id) .'-' . date('Ymdhis') . '.' . $file->getClientOriginalExtension() , 'public');
