@@ -35,6 +35,11 @@ class SalesFormDetail extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function salesForm()
+    {
+        return $this->belongsTo(SalesForm::class, 'sales_form_id', 'id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

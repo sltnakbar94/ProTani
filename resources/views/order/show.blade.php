@@ -116,32 +116,31 @@
                                     <th>Jenis Ikan</th>
                                     <th>Mulai Penaburan</th>
                                     <th>Target Panen</th>
-                                    <th>Status</th>
                                     <th>Jumlah Hasil Panen</th>
                                     <th>Foto</th>
                                     <th>Action</th>
                                 </tr>
-                                @if(isset($crud->entry->order_details))
+                                @if(isset($crud->entry->sales_form_details))
                                     @php
                                     $total = 0;
                                     @endphp
-                                    @foreach($crud->entry->order_details as $od)
+                                    @foreach($crud->entry->sales_form_details as $od)
                                     @php
                                     $total += $od->qty;
                                     @endphp
                                     <tr>
-                                        <td>{{ $od->nomor_order }}</td>
-                                        <td>{{ $od->tujuan }}</td>
-                                        <td>{{ number_format($od->qty) }}</td>
-                                        <td>{{ $od->created_at->format('d-m-Y') }}</td>
-                                        <td>{!! $od->status_order == 0 ? '<span class="badge badge-warning">PRE-ORDER</span>' : '<span class="badge badge-success">POD</span>' !!}</td>
-                                        <td>{!! $od->status_terima == 1 ? '<span class="badge badge-success">Delivered</span>' : '<span class="badge badge-primary">On Delivery</span>' !!}</td>
+                                        <td>{{ number_format($od->pool_number) }}</td>
+                                        <td>{{ number_format($od->pool_large) }}</td>
+                                        <td>{{ $od->fish_type }}</td>
+                                        <td>{{ Carbon\Carbon::parse($od->plant_date)->format('d-m-Y') }}</td>
+                                        <td>{{ Carbon\Carbon::parse($od->harvest_date)->format('d-m-Y') }}</td>
+                                        <td>{{ number_format($od->harvest_qty) }}</td>
+                                        <td><img src="{{asset('storage/'.$od->sitepict)}}" style="width:25%"></td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a target="_blank" href="{{ route('orderdetail.show-qrcode', $od->url) }}" class="btn btn-primary">CETAK QRCODE</a>
-                                                <a id="{{ route('orderdetail.edit', $od->id) }}" href="{{ route('orderdetail.update', $od->id) }}" class="btn btn-warning editModalOrderDetail" data-toggle="modal" data-target="#editModalOrderDetail">EDIT</a>
+                                                {{-- <a id="{{ route('orderdetail.edit', $od->id) }}" href="{{ route('orderdetail.update', $od->id) }}" class="btn btn-warning editModalOrderDetail" data-toggle="modal" data-target="#editModalOrderDetail">EDIT</a> --}}
                                                 @if($od->status_terima != 1)
-                                                <form method="POST" action="{{ route('orderdetail.destroy', $od->id) }}" class="js-confirm" data-confirm="Apakah anda yakin ingin menghapus data ini?">
+                                                {{-- <form method="POST" action="{{ route('orderdetail.destroy', $od->id) }}" class="js-confirm" data-confirm="Apakah anda yakin ingin menghapus data ini?"> --}}
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">DELETE</button>

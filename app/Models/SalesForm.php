@@ -37,6 +37,17 @@ class SalesForm extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function sales_form_details()
+    {
+        return $this->hasMany(SalesFormDetail::class, 'sales_form_id', 'id')->orderby('created_at', 'asc');
+    }
+
+    public function salesDetail()
+    {
+        return $this->hasOne(SalesFormDetail::class, 'sales_form_id')
+            ->where('sales_form_id', $this->id);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
