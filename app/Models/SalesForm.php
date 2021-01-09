@@ -48,6 +48,26 @@ class SalesForm extends Model
             ->where('sales_form_id', $this->id);
     }
 
+    public function province()
+    {
+        return $this->hasOne(Province::class, 'provinces');
+    }
+
+    public function regency()
+    {
+        return $this->hasOne(Regency::class, 'regencies');
+    }
+
+    public function district()
+    {
+        return $this->hasOne(District::class, 'districts');
+    }
+
+    public function village()
+    {
+        return $this->hasOne(Village::class, 'villages');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

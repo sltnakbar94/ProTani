@@ -111,14 +111,14 @@
                         <div class="table">
                             <table class="table table-responsive">
                                 <tr>
-                                    <th>Nomor Kolam</th>
-                                    <th>Luas Kolam</th>
-                                    <th>Jenis Ikan</th>
-                                    <th>Mulai Penaburan</th>
-                                    <th>Target Panen</th>
-                                    <th>Jumlah Hasil Panen</th>
-                                    <th>Foto</th>
-                                    <th>Action</th>
+                                    <th style="width: 10%">Nomor Kolam</th>
+                                    <th style="width: 10%">Luas Kolam</th>
+                                    <th style="width: 15%">Jenis Ikan</th>
+                                    <th style="width: 10%">Mulai Penaburan</th>
+                                    <th style="width: 10%">Target Panen</th>
+                                    <th style="width: 10%">Jumlah Hasil Panen</th>
+                                    <th style="width: 15%">Foto</th>
+                                    <th style="width: 20%">Action</th>
                                 </tr>
                                 @if(isset($crud->entry->sales_form_details))
                                     @php
@@ -135,12 +135,16 @@
                                         <td>{{ Carbon\Carbon::parse($od->plant_date)->format('d-m-Y') }}</td>
                                         <td>{{ Carbon\Carbon::parse($od->harvest_date)->format('d-m-Y') }}</td>
                                         <td>{{ number_format($od->harvest_qty) }}</td>
-                                        <td><img src="{{asset('storage/'.$od->sitepict)}}" style="width:25%"></td>
+                                        @if ($od->sitepict != NULL)
+                                            <td><img src="{{asset('storage/'.$od->sitepict)}}" style="width:100%"></td>
+                                        @else
+                                            <td></td>
+                                        @endif
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                {{-- <a id="{{ route('orderdetail.edit', $od->id) }}" href="{{ route('orderdetail.update', $od->id) }}" class="btn btn-warning editModalOrderDetail" data-toggle="modal" data-target="#editModalOrderDetail">EDIT</a> --}}
+                                                <a id="{{ route('salesformdetail.edit', $od->id) }}" href="{{ route('salesformdetail.update', $od->id) }}" class="btn btn-warning editModalsalesformdetail" data-toggle="modal" data-target="#editModalsalesformdetail">EDIT</a>
                                                 @if($od->status_terima != 1)
-                                                {{-- <form method="POST" action="{{ route('orderdetail.destroy', $od->id) }}" class="js-confirm" data-confirm="Apakah anda yakin ingin menghapus data ini?"> --}}
+                                                <form method="POST" action="{{ route('salesformdetail.destroy', $od->id) }}" class="js-confirm" data-confirm="Apakah anda yakin ingin menghapus data ini?">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">DELETE</button>

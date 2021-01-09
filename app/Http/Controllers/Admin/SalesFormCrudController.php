@@ -60,10 +60,6 @@ class SalesFormCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SalesFormRequest::class);
-        $province = DB::table('provinces')->get();
-        $regencies = DB::table('regencies')->get();
-        $districts = DB::table('districts')->get();
-        $villages = DB::table('villages')->get();
 
         $this->crud->addField([
             'name' => 'user_id',
@@ -93,36 +89,80 @@ class SalesFormCrudController extends CrudController
             'tab'             => 'Data Diri',
         ]);
 
+        $this->crud->addFields([
+            [
+                'tab' => 'Address',
+                'name'  => 'province_id',
+                'label' => "Provinsi",
+                'type'  => 'select2_from_ajax',
+                'entity' => 'province',
+                'attribute' => 'name',
+                'placeholder' => 'Pilih Provinsi',
+                'minimum_input_length' => 0,
+                'data_source' => url('api/province'),
+                'model' => 'App\Models\Province',
+                // 'include_all_form_fields' => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-3'
+                ],
+            ],
+        ]);
+
         $this->crud->addField([
             'name'            => 'provinces',
             'label'           => "Provinsi",
-            'type'            => 'select_from_array',
-            'options'         => $province->pluck('name', 'id'),
-            'allows_null'     => true,
+            'type'            => 'select2_from_ajax',
+            'entity'          => 'province',
+            'attribute'       => 'name',
+            'placeholder'     => 'Pilih Provinsi',
+            'minimum_input_length' => 0,
+            'data_source'     => url('api/province'),
+            'model'           => 'App\Models\Province',
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'regencies',
             'label'           => "Kota",
-            'type'            => 'text',
-            // 'options'         => $regencies->pluck('name'),
+            'type'            => 'select2_from_ajax',
+            'entity'          => 'regency',
+            'attribute'       => 'name',
+            'placeholder'     => 'Pilih Kab/Kota',
+            'minimum_input_length' => 0,
+            'data_source'     => url('api/regency'),
+            'model'           => 'App\Models\Regency',
+            'dependencies'    => ['province_id'],
+            'include_all_form_fields' => true,
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'districts',
             'label'           => "Kecamatan",
-            'type'            => 'text',
-            // 'options'         => $districts->pluck('name'),
+            'type'            => 'select2_from_ajax',
+            'entity'          => 'district',
+            'attribute'       => 'name',
+            'placeholder'     => 'Pilih Kecamatan',
+            'minimum_input_length' => 0,
+            'data_source'     => url('api/district'),
+            'model'           => 'App\Models\District',
+            'dependencies'    => ['regency_id'] ,
+            'include_all_form_fields' => true,
             'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'villages',
             'label'           => "Kel/Desa",
-            'type'            => 'text',
-            // 'options'         => $villages->pluck('name'),
+            'type'            => 'select2_from_ajax',
+            'entity'          => 'village',
+            'attribute'       => 'name',
+            'placeholder'     => 'Pilih Kelurahan',
+            'minimum_input_length' => 0,
+            'data_source'     => url('api/village'),
+            'model'           => 'App\Models\Village',
+            'dependencies'    => ['district_id'] ,
+            'include_all_form_fields' => true,
             'tab'             => 'Data Diri',
         ]);
 

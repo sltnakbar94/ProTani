@@ -16,7 +16,7 @@ class ProvinceController extends Controller
         $search_term = $request->input('q');
         $page = $request->input('page');
 
-        $results = Province::active()->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
+        $results = Province::where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
 
         return $results;
     }

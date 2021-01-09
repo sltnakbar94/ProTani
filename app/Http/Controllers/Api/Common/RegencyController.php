@@ -17,21 +17,19 @@ class RegencyController extends Controller
 
         $search_term = $request->input('q');
         $page = $request->input('page');
-
         $province = $form->filter(function($value, $key){
-            return $key === 'province_id';
+            return $key === 'provinces';
         });
 
         $selected_province = $province->first();
+        if ($search_term)
+        {
+            $results = Regency::where('province_id', $selected_province)->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
+        } else {
+            $results = Regency::where('province_id', $selected_province)->paginate(10);
+        }
 
-        // if ($search_term)
-        // {
-        //     $results = Regency::where('province_id', $selected_province)->where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
-        // } else {
-        //     $results = Regency::where('province_id', $selected_province)->paginate(10);
-        // }
-
-        $results = Regency::whereIn('id', [3271, 3275, 3671, 3674, 3276])->paginate(10);
+        // $results = Regency::whereIn('id', [3271, 3275, 3671, 3674, 3276])->paginate(10);
 
         return $results;
     }
@@ -44,7 +42,7 @@ class RegencyController extends Controller
     /**
      * API
      */
-    
+
     public function getIndex()
     {
         // return all regency
