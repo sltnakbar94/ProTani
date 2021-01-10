@@ -15,7 +15,7 @@ class DownloadSalesForm extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'download_sales_forms';
+    protected $table = 'sales_forms';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

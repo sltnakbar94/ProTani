@@ -42,7 +42,97 @@ class SalesFormCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        $this->crud->addColumn([
+            'name' => 'farmer_name',
+            'type' => 'text',
+            'label' => 'Nama Petani'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'phone_number',
+            'type' => 'text',
+            'label' => 'No HP'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'id_number',
+            'type' => 'text',
+            'label' => 'No KTP'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'province',
+            'type' => 'select',
+            'entity' => 'province',
+            'model' => 'App\Models\Province',
+            'label' => 'Provinsi'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'regency',
+            'type' => 'select',
+            'entity' => 'regency',
+            'model' => 'App\Models\Regency',
+            'label' => 'Kota/Kab'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'district',
+            'type' => 'select',
+            'entity' => 'district',
+            'model' => 'App\Models\District',
+            'label' => 'Kecamatan'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'village',
+            'type' => 'select',
+            'entity' => 'village',
+            'model' => 'App\Models\Village',
+            'label' => 'Kelurahan'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'rt',
+            'type' => 'number',
+            'label' => 'RT'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'rw',
+            'type' => 'number',
+            'label' => 'RW'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'id_address',
+            'type' => 'text',
+            'label' => 'Alamat KTP'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'id_address',
+            'type' => 'text',
+            'label' => 'Alamat KTP'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'site_address',
+            'type' => 'text',
+            'label' => 'Alamat Lokasi'
+        ]);
+
+        $this->crud->addColumn([
+            'name'      => 'idpict', // The db column name
+            'label'     => 'Foto', // Table column heading
+            'type'      => 'image',
+            'prefix' => 'storage/public/',
+            // image from a different disk (like s3 bucket)
+            // 'disk'   => 'disk-name',
+            // optional width/height if 25px is not ok with you
+            // 'height' => '30px',
+            // 'width'  => '30px',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
