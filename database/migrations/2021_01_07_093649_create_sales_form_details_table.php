@@ -27,7 +27,7 @@ class CreateSalesFormDetailsTable extends Migration
             $table->string('status')->nullable()->default('0');
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
-            $table->integer('user_id');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

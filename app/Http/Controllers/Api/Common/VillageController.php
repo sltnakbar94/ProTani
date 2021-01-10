@@ -21,7 +21,7 @@ class VillageController extends Controller
         $page = $request->input('page');
 
         $district = $form->filter(function($value, $key){
-            return $key === 'districts';
+            return $key === 'district_id';
         });
 
         $selected_district = $district->first();

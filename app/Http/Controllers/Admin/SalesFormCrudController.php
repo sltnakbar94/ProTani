@@ -89,27 +89,8 @@ class SalesFormCrudController extends CrudController
             'tab'             => 'Data Diri',
         ]);
 
-        $this->crud->addFields([
-            [
-                'tab' => 'Address',
-                'name'  => 'province_id',
-                'label' => "Provinsi",
-                'type'  => 'select2_from_ajax',
-                'entity' => 'province',
-                'attribute' => 'name',
-                'placeholder' => 'Pilih Provinsi',
-                'minimum_input_length' => 0,
-                'data_source' => url('api/province'),
-                'model' => 'App\Models\Province',
-                // 'include_all_form_fields' => true,
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-3'
-                ],
-            ],
-        ]);
-
         $this->crud->addField([
-            'name'            => 'provinces',
+            'name'            => 'province_id',
             'label'           => "Provinsi",
             'type'            => 'select2_from_ajax',
             'entity'          => 'province',
@@ -122,7 +103,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'regencies',
+            'name'            => 'regency_id',
             'label'           => "Kota",
             'type'            => 'select2_from_ajax',
             'entity'          => 'regency',
@@ -137,7 +118,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'districts',
+            'name'            => 'district_id',
             'label'           => "Kecamatan",
             'type'            => 'select2_from_ajax',
             'entity'          => 'district',
@@ -152,7 +133,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'villages',
+            'name'            => 'village_id',
             'label'           => "Kel/Desa",
             'type'            => 'select2_from_ajax',
             'entity'          => 'village',
@@ -188,7 +169,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'label' => "Foto KTP",
+            'label' => "Foto",
             'name' => "idpict",
             'type' => 'image',
             'tab'             => 'Data Diri',
@@ -200,10 +181,24 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name'            => 'site_address',
+            'label'           => "Alamat Lokasi",
+            'type'            => 'text',
+            'tab'             => 'Data Lokasi',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'pool_qty',
+            'label'           => "Jumlah Kolam",
+            'type'            => 'number',
+            'tab'             => 'Data Lokasi',
+        ]);
+
+        $this->crud->addField([
             'name'            => 'description',
             'label'           => "Catatan",
             'type'            => 'textarea',
-            'tab'             => 'Catatan',
+            'tab'             => 'Data Lokasi',
         ]);
 
         /**

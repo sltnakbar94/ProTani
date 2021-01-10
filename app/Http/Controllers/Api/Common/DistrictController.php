@@ -21,7 +21,7 @@ class DistrictController extends Controller
         $page = $request->input('page');
 
         $regency = $form->filter(function($value, $key){
-            return $key === 'regencies';
+            return $key === 'regency_id';
         });
 
         $selected_regency = $regency->first();

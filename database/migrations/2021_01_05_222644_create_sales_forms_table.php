@@ -21,15 +21,15 @@ class CreateSalesFormsTable extends Migration
             $table->string('id_address');
             $table->integer('rt');
             $table->integer('rw');
-            $table->string('villages');
-            $table->string('districts');
-            $table->string('regencies');
-            $table->string('provinces');
+            $table->string('village_id');
+            $table->string('district_id');
+            $table->string('regency_id');
+            $table->string('province_id');
             $table->string('idpict')->nullable();
             $table->text('site_address')->nullable();
             $table->integer('pool_qty')->nullable();
             $table->text('description')->nullable();
-            $table->integer('user_id');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

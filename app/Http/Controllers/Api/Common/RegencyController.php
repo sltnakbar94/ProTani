@@ -18,7 +18,7 @@ class RegencyController extends Controller
         $search_term = $request->input('q');
         $page = $request->input('page');
         $province = $form->filter(function($value, $key){
-            return $key === 'provinces';
+            return $key === 'province_id';
         });
 
         $selected_province = $province->first();

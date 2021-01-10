@@ -31,10 +31,6 @@ class SalesFormRequest extends FormRequest
             'id_address' => 'required',
             'rt' => 'required',
             'rw' => 'required',
-            'villages' => 'required',
-            'districts' => 'required',
-            'regencies' => 'required',
-            'provinces' => 'required',
         ];
     }
 

@@ -50,22 +50,22 @@ class SalesForm extends Model
 
     public function province()
     {
-        return $this->hasOne(Province::class, 'provinces');
+        return $this->belongsTo(Province::class);
     }
 
     public function regency()
     {
-        return $this->hasOne(Regency::class, 'regencies');
+        return $this->belongsTo(Regency::class);
     }
 
     public function district()
     {
-        return $this->hasOne(District::class, 'districts');
+        return $this->belongsTo(District::class);
     }
 
     public function village()
     {
-        return $this->hasOne(Village::class, 'villages');
+        return $this->belongsTo(Village::class);
     }
 
     /*
