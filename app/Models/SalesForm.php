@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -36,6 +37,11 @@ class SalesForm extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function sales_form_details()
     {

@@ -134,6 +134,15 @@ class SalesFormCrudController extends CrudController
             // 'width'  => '30px',
         ]);
 
+        $this->crud->addColumn([
+            'name' => 'user_id',
+            'type' => 'select',
+            'entity' => 'user',
+            'attribute' => 'name',
+            'model' => 'App\User',
+            'label' => 'Sales'
+        ]);
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -161,14 +170,12 @@ class SalesFormCrudController extends CrudController
             'name'            => 'farmer_name',
             'label'           => "Nama Petani",
             'type'            => 'text',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'id_number',
             'label'           => "Nomor KTP",
             'type'            => 'text',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
@@ -176,7 +183,6 @@ class SalesFormCrudController extends CrudController
             'label'           => "Nomor HP Petani",
             'type'            => 'text',
             'hint'            => '08XXXXXXXXXX',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
@@ -189,7 +195,6 @@ class SalesFormCrudController extends CrudController
             'minimum_input_length' => 0,
             'data_source'     => url('api/province'),
             'model'           => 'App\Models\Province',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
@@ -204,7 +209,6 @@ class SalesFormCrudController extends CrudController
             'model'           => 'App\Models\Regency',
             'dependencies'    => ['province_id'],
             'include_all_form_fields' => true,
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
@@ -219,7 +223,6 @@ class SalesFormCrudController extends CrudController
             'model'           => 'App\Models\District',
             'dependencies'    => ['regency_id'] ,
             'include_all_form_fields' => true,
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
@@ -234,35 +237,30 @@ class SalesFormCrudController extends CrudController
             'model'           => 'App\Models\Village',
             'dependencies'    => ['district_id'] ,
             'include_all_form_fields' => true,
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'rt',
             'label'           => "RT",
             'type'            => 'number',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'rw',
             'label'           => "RW",
             'type'            => 'number',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'name'            => 'id_address',
             'label'           => "Alamat",
             'type'            => 'text',
-            'tab'             => 'Data Diri',
         ]);
 
         $this->crud->addField([
             'label' => "Foto",
             'name' => "idpict",
             'type' => 'image',
-            'tab'             => 'Data Diri',
             'crop' => true, // set to true to allow cropping, false to disable
             'upload' => true,
             'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
@@ -274,21 +272,18 @@ class SalesFormCrudController extends CrudController
             'name'            => 'site_address',
             'label'           => "Alamat Lokasi",
             'type'            => 'text',
-            'tab'             => 'Data Lokasi',
         ]);
 
         $this->crud->addField([
             'name'            => 'pool_qty',
             'label'           => "Jumlah Kolam",
             'type'            => 'number',
-            'tab'             => 'Data Lokasi',
         ]);
 
         $this->crud->addField([
             'name'            => 'description',
             'label'           => "Catatan",
             'type'            => 'textarea',
-            'tab'             => 'Data Lokasi',
         ]);
 
         /**

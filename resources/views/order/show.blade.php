@@ -60,6 +60,12 @@
                     <div class="col-md-6">
                         <div class="table">
                             <table class="table no-border">
+                                @php
+                                    $province = DB::table('provinces')->where('id', '=', $crud->entry->province_id)->first();
+                                    $regency = DB::table('regencies')->where('id', '=', $crud->entry->regency_id)->first();
+                                    $district = DB::table('districts')->where('id', '=', $crud->entry->district_id)->first();
+                                    $village = DB::table('villages')->where('id', '=', $crud->entry->village_id)->first();
+                                @endphp
                                 <tr>
                                     <td>Nama Petani</td>
                                     <td><strong>{{ $crud->entry->farmer_name }}</strong></td>
@@ -74,11 +80,11 @@
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
-                                    <td>{{ $crud->entry->id_address }}, RT:{{ $crud->entry->rt }}/RW:{{ $crud->entry->rw }}, {{ $crud->entry->villages }}, {{ $crud->entry->districts }}, {{ $crud->entry->regencies }}</td>
+                                    <td>{{ $crud->entry->id_address }}, RT:{{ $crud->entry->rt }}/RW:{{ $crud->entry->rw }}, {{ $village->name }}, {{ $district->name }}, {{ $regency->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Provinsi</td>
-                                    <td>{{ $crud->entry->provinces }}</td>
+                                    <td>{{ $province->name }}</td>
                                 </tr>
                             </table>
                         </div>
