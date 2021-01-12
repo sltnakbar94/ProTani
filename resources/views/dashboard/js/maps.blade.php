@@ -1,5 +1,5 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
-<script>    
+<script>
       var map;
       var Markers = {};
       var infowindow;
@@ -19,7 +19,7 @@
 
         var marker, i;
 
-        for (i = 0; i < locations.length; i++) {  
+        for (i = 0; i < locations.length; i++) {
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
             map: map
@@ -30,13 +30,13 @@
               var contentString = '<div id="content">'+
               '<div id="siteNotice">'+
               '</div>'+
-              '<h6 id="firstHeading" class="firstHeading">Nomor Pengiriman: '+ locations[i].nomor_order +' </h6>'+
+              '<h6 id="firstHeading" class="firstHeading">Form ID: '+ locations[i].sales_form_id +' </h6>'+
               '<div id="bodyContent">'+
-              '<p>Tujuan: '+ locations[i].tujuan +' <br>' +
-              'Nama Penerima: '+ locations[i].nama_penerima +' <br>' +
-              'Jumlah Kirim: '+ locations[i].qty +'<br>' +
-              'Jumlah Terima: '+ locations[i].jumlah_diterima +'<br>' +
-              'Tanggal Terima: '+ locations[i].tanggal_terima +'<br>' +
+              '<p>Luas Kolam: '+ locations[i].pool_large +' <br>' +
+              'Jenis Ikan: '+ locations[i].fish_type +' <br>' +
+              'Tanggal Penaburan: '+ locations[i].plant_date +'<br>' +
+              'Target Panen: '+ locations[i].harvest_date +'<br>' +
+              'Jumlah Panen: '+ locations[i].harvest_qty +'<br>' +
               // 'Detail: <a href="'+ locations[i].url +'">Lihat Detail</a>'+
               '</div>'+
               '</div>';

@@ -107,14 +107,38 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
+                <label class="control-label" for="province_id">province_id</label>
+                <div>
+                    <input type="text" class="form-control" name="province_id" id="province_id" value="{{ $crud->entry->province_id }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="control-label" for="regency_id">regency_id</label>
+                <div>
+                    <input type="text" class="form-control" name="regency_id" id="regency_id" value="{{ $crud->entry->regency_id }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="control-label" for="district_id">district_id</label>
+                <div>
+                    <input type="text" class="form-control" name="district_id" id="district_id" value="{{ $crud->entry->district_id }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="control-label" for="village_id">village_id</label>
+                <div>
+                    <input type="text" class="form-control" name="village_id" id="village_id" value="{{ $crud->entry->ivillage_idd }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group" style="display:none;">
                 <label class="control-label" for="lat">Latitude</label>
                 <div>
                     <input type="text" class="form-control" name="lat" id="lat" value="{{ old('lat') }}" readonly="readonly">
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
                 <label class="control-label" for="lng">Longitude</label>
                 <div>
                     <input type="text" class="form-control" name="lng" id="lng" value="{{ old('lng') }}" readonly="readonly">

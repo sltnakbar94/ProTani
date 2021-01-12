@@ -94,6 +94,10 @@ class SalesFormDetailCrudController extends CrudController
         $form_detail->harvest_date = $request->harvest_date;
         $form_detail->harvest_qty = $request->harvest_qty;
         $form_detail->result = $request->result;
+        $form_detail->province_id = $request->province_id;
+        $form_detail->regency_id = $request->regency_id;
+        $form_detail->district_id = $request->district_id;
+        $form_detail->village_id = $request->village_id;
         $form_detail->lat = $request->lat;
         $form_detail->lng = $request->lng;
         if($request->hasFile('sitepict')) {

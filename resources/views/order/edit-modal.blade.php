@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="editModalOrderDetail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="editModalOrderDetailLabel" aria-hidden="true">
+<div class="modal fade" id="editModalSalesFormDetail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="editModalSalesFormDetailLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalOrderDetailLabel">Ubah Data</h5>
+        <h5 class="modal-title" id="editModalSalesFormDetailLabel">Ubah Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,59 +14,100 @@
             <input type="hidden" name="order_id" value="{{ $crud->entry->id }}">
 
             <div class="form-group">
-                <label class="control-label" for="nomor_order">Nomor Pengiriman</label>
-
+                <label class="control-label" for="pool_number">Nomor Kolam</label>
                 <div>
-                    <input type="text" class="form-control{{ $errors->has('nomor_order') ? ' is-invalid' : '' }}" name="nomor_order" name="nomor_order" id="nomor_order" value="{{ old('nomor_order') }}" readonly required>
+                    <input type="number" class="form-control{{ $errors->has('pool_number') ? ' is-invalid' : '' }}" name="pool_number" name="pool_number" id="pool_number" value="{{ old('pool_number') }}" required>
 
-                    @if ($errors->has('nomor_order'))
+                    @if ($errors->has('pool_number'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('nomor_order') }}</strong>
+                            <strong>{{ $errors->first('pool_number') }}</strong>
                         </span>
                     @endif
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="tujuan">Tujuan</label>
+                <label class="control-label" for="pool_large">Luas Kolam</label>
                 <div>
-                    <select name="tujuan" id="tujuan" class="form-control{{ $errors->has('tujuan') ? ' is-invalid' : '' }}" required>
-                        @foreach(\App\Models\Destination::pluck('name', 'name') as $value => $text)
-                            @if($crud->entry->destination)
-                                @if(in_array($value, $crud->entry->destination->destinations->pluck('name')->toArray()))
-                                <option value="{{ $text }}" {{ old('tujuan') == $text ? "selected": ""  }}>{{ $text }}</option>
-                                @endif
-                            @endif
-                        @endforeach
-                    </select>
-                    @if ($errors->has('tujuan'))
+                    <input type="number" class="form-control{{ $errors->has('pool_large') ? ' is-invalid' : '' }}" name="pool_large" value="{{ old('pool_large') }}" required>
+                    @if ($errors->has('pool_large'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('tujuan') }}</strong>
+                            <strong>{{ $errors->first('pool_large') }}</strong>
                         </span>
                     @endif
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="qty">Jumlah</label>
+                <label class="control-label" for="fish_type">Jenis Ikan</label>
                 <div>
-                    <input type="number" class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" value="{{ old('qty') }}" required>
-                    <p class="help-block" style="font-size:80%;">Usahakan jangan scroll kolom dengan mouse karena nilai akan berubah.</p>
-                    @if ($errors->has('qty'))
+                    <input type="text" class="form-control{{ $errors->has('fish_type') ? ' is-invalid' : '' }}" name="fish_type" value="{{ old('fish_type') }}" required>
+                    @if ($errors->has('fish_type'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('qty') }}</strong>
+                            <strong>{{ $errors->first('fish_type') }}</strong>
                         </span>
                     @endif
                 </div>
             </div>
             <div class="form-group">
-                <label for="">Pre-Order</label>
-                <input type="checkbox" name="pre_order" id="pre_order">
+                <label class="control-label" for="plant_date">Mulai Penaburan</label>
+                <div>
+                    <input type="date" class="form-control{{ $errors->has('plant_date') ? ' is-invalid' : '' }}" name="plant_date" value="{{ old('plant_date') }}" required>
+                    @if ($errors->has('plant_date'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('plant_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="harvest_date">Target Panen</label>
+                <div>
+                    <input type="date" class="form-control{{ $errors->has('harvest_date') ? ' is-invalid' : '' }}" name="harvest_date" value="{{ old('harvest_date') }}" required>
+                    @if ($errors->has('harvest_date'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('harvest_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="harvest_qty">Jumlah Panen</label>
+                <div>
+                    <input type="number" class="form-control{{ $errors->has('harvest_qty') ? ' is-invalid' : '' }}" name="harvest_qty" value="{{ old('harvest_qty') }}" required>
+                    @if ($errors->has('harvest_qty'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('harvest_qty') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="result">Hasil</label>
+                <div>
+                    <input type="text" class="form-control{{ $errors->has('result') ? ' is-invalid' : '' }}" name="result" value="{{ old('result') }}" required>
+                    @if ($errors->has('result'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('result') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sitepict">Foto</label>
+                <div>
+                    <input type="file" name="sitepict" accept="image/*" capture="user" class="form-control{{ $errors->has('sitepict') ? ' is-invalid' : '' }}">
+                    @if ($errors->has('sitepict'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('sitepict') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
             <div class="form-group text-right">
                 <label for=""></label>
                 <button type="submit" class="btn btn-warning"><i class="fa edit"></i> UBAH</button>
             </div>
-            
+
         </form>
       </div>
     </div>

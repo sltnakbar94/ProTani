@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Charts\SalesLineChart;
 use App\Models\OrderDetail;
 use App\Models\Produksi;
+use App\Models\SalesFormDetail;
 use Carbon;
 use DB;
 
@@ -35,7 +36,7 @@ class AdminController extends Controller
 
     public function dashboardMap()
     {
-        $this->data['locations'] = NULL;
+        $this->data['locations'] = SalesFormDetail::whereNotNull('lat')->whereNotNull('lng')->get();
 
         return view(backpack_view('dashboard-map'), $this->data);
     }

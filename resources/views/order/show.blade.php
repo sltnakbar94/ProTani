@@ -148,7 +148,7 @@
                                         @endif
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a id="{{ route('salesformdetail.edit', $od->id) }}" href="{{ route('salesformdetail.update', $od->id) }}" class="btn btn-warning editModalsalesformdetail" data-toggle="modal" data-target="#editModalsalesformdetail">EDIT</a>
+                                                <a id="{{ route('salesformdetail.edit', $od->id) }}" href="{{ route('salesformdetail.update', $od->id) }}" class="btn btn-warning editModalSalesFormDetail" data-toggle="modal" data-target="#editModalSalesFormDetail">EDIT</a>
                                                 @if($od->status_terima != 1)
                                                 <form method="POST" action="{{ route('salesformdetail.destroy', $od->id) }}" class="js-confirm" data-confirm="Apakah anda yakin ingin menghapus data ini?">
                                                     @method('DELETE')
@@ -248,7 +248,7 @@
                 return false;
             })
 
-            $('body').on('click', '.editModalOrderDetail', function(){
+            $('body').on('click', '.editModalSalesFormDetail', function(){
                 var edit_url = $(this).attr('id');
                 var url = $(this).attr('href');
 
@@ -261,10 +261,14 @@
                     data: {},
                     success:function(response){
                         console.log(response)
-                        $('body').find('input[name=nomor_order]').val(response.nomor_order)
-                        $('body').find('select[name=tujuan]').val(response.tujuan).change();
-                        $('body').find('input[name=qty]').val(response.qty)
-                        $('body').find('input[name=pre_order]').prop('checked', response.status_order == 0)
+                        $('body').find('input[name=pool_number]').val(response.pool_number)
+                        $('body').find('input[name=pool_large]').val(response.pool_large)
+                        $('body').find('input[name=fish_type]').val(response.fish_type)
+                        $('body').find('input[name=plant_date]').val(response.plant_date)
+                        $('body').find('input[name=harvest_date]').val(response.harvest_date)
+                        $('body').find('input[name=harvest_qty]').val(response.harvest_qty)
+                        $('body').find('input[name=result]').val(response.result)
+                        $('body').find('input[name=sitepict]').val(response.sitepict)
                     },
                     error:function(xhr, responseText, throwError){
                         console.log('error!')
@@ -273,7 +277,7 @@
 
             });
 
-            $('body').on('submit', '#form-order-detail-edit', function(e){
+            $('body').on('submit', '#form-sales-form-detail-edit', function(e){
                 e.preventDefault();
 
                 var url = $(this).attr('action');
@@ -289,7 +293,7 @@
                             // show notification
                             // reload
                             $("#form-order-detail-edit").trigger('reset');
-                            $("#editModalOrderDetail").modal('hide');
+                            $("#editModalSalesFormDetail").modal('hide');
                             window.location.reload();
                         }
                     },

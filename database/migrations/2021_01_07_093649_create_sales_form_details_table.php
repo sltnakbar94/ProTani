@@ -27,6 +27,10 @@ class CreateSalesFormDetailsTable extends Migration
             $table->string('status')->nullable()->default('0');
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
+            $table->string('village_id');
+            $table->string('district_id');
+            $table->string('regency_id');
+            $table->string('province_id');
             $table->string('user_id');
             $table->timestamps();
         });

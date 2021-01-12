@@ -1,6 +1,6 @@
 @if(isset($crud->entry->id))
     @include('order.add-modal')
-    {{-- @include('order.edit-modal') --}}
+    @include('order.edit-modal')
 @endif
 
 <!-- show modal if in dashboard only -->
