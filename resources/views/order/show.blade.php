@@ -252,7 +252,7 @@
                 var edit_url = $(this).attr('id');
                 var url = $(this).attr('href');
 
-                $('#form-order-detail-edit').attr('action', url);
+                $('#form-sales-form-detail-edit').attr('action', url);
 
                 $.ajax({
                     url: edit_url,
@@ -292,7 +292,7 @@
                             // close modal
                             // show notification
                             // reload
-                            $("#form-order-detail-edit").trigger('reset');
+                            $("#form-sales-form-detail-edit").trigger('reset');
                             $("#editModalSalesFormDetail").modal('hide');
                             window.location.reload();
                         }

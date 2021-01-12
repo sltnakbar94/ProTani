@@ -9,9 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" name="form_order_detail_edit" id="form-order-detail-edit">
+        <form action="#" method="post" enctype="multipart/form-data" name="form_sales_form_detail_edit" id="form-sales-form-detail-edit">
             @csrf
-            <input type="hidden" name="order_id" value="{{ $crud->entry->id }}">
+            <input type="hidden" name="sales_form_id" value="{{ $crud->entry->id }}">
 
             <div class="form-group">
                 <label class="control-label" for="pool_number">Nomor Kolam</label>
