@@ -128,7 +128,7 @@
             <div class="form-group" style="display:none;">
                 <label class="control-label" for="village_id">village_id</label>
                 <div>
-                    <input type="text" class="form-control" name="village_id" id="village_id" value="{{ $crud->entry->ivillage_idd }}" readonly="readonly">
+                    <input type="text" class="form-control" name="village_id" id="village_id" value="{{ $crud->entry->village_id }}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group" style="display:none;">
