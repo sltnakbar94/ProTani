@@ -34,7 +34,7 @@ class ProcessResizeFormDetailImage extends Model
      */
     public function handle()
     {
-        ini_set('memory_limit','256M');
+        ini_set('memory_limit','512M');
 
         Log::info('START: ' . memory_get_usage());
         $path = $this->form_detail->foto;
