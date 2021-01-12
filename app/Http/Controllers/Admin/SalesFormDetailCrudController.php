@@ -111,6 +111,16 @@ class SalesFormDetailCrudController extends CrudController
             ProcessResizeFormDetailImage::dispatch($form_detail)->delay(now()->addSeconds(3));
         }
 
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
+        \Alert::add('success', 'Berhasil tambah data order ' . $form_detail->pool_number)->flash();
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $form_detail = SalesFormDetail::findOrFail($id);
+        $form_detail->delete();
+
+        \Alert::add('success', 'Berhasil hapus data order')->flash();
+        return redirect()->back();
     }
 }
