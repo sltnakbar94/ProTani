@@ -111,12 +111,6 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name' => 'id_address',
-            'type' => 'text',
-            'label' => 'Alamat KTP'
-        ]);
-
-        $this->crud->addColumn([
             'name' => 'site_address',
             'type' => 'text',
             'label' => 'Alamat Lokasi'
