@@ -115,6 +115,30 @@ class SalesFormDetailCrudController extends CrudController
         return redirect()->back();
     }
 
+    public function update(SalesFormDetailRequest $request, $id)
+    {
+        $form_detail = SalesFormDetail::findOrFail($id);
+        $form_detail->pool_number = $request->pool_number;
+        $form_detail->pool_large = $request->pool_large;
+        $form_detail->fish_type = $request->fish_type;
+        $form_detail->plant_date = $request->plant_date;
+        $form_detail->harvest_date = $request->harvest_date;
+        $form_detail->harvest_qty = $request->harvest_qty;
+        $form_detail->result = $request->result;
+        if($request->hasFile('sitepict')) {
+            $file = $request->file('sitepict');
+            $path = $file->storeAs('form_details', strtolower($form_detail->sales_form_id) .'-' . date('Ymdhis') . '.' . $file->getClientOriginalExtension() , 'public');
+            $form_detail->sitepict = $path;
+        }
+        $form_detail->save();
+
+        \Alert::add('success', 'Berhasil memperbarui data order ' . $form_detail->pool_number)->flash();
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil memperbarui data order ' . $form_detail->pool_number
+        ], 200);
+    }
+
     public function destroy($id)
     {
         $form_detail = SalesFormDetail::findOrFail($id);

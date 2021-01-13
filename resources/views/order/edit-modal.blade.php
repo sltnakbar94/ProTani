@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="harvest_date">Target Panen</label>
+                <label class="control-label" for="harvest_date">Tanggal Panen</label>
                 <div>
                     <input type="date" class="form-control{{ $errors->has('harvest_date') ? ' is-invalid' : '' }}" name="harvest_date" value="{{ old('harvest_date') }}" required>
                     @if ($errors->has('harvest_date'))
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="harvest_qty">Jumlah Panen</label>
+                <label class="control-label" for="harvest_qty">Target Panen</label>
                 <div>
                     <input type="number" class="form-control{{ $errors->has('harvest_qty') ? ' is-invalid' : '' }}" name="harvest_qty" value="{{ old('harvest_qty') }}" required>
                     @if ($errors->has('harvest_qty'))

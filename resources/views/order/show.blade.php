@@ -121,8 +121,8 @@
                                     <th style="width: 10%">Luas Kolam</th>
                                     <th style="width: 15%">Jenis Ikan</th>
                                     <th style="width: 10%">Mulai Penaburan</th>
+                                    <th style="width: 10%">Tanggal Panen</th>
                                     <th style="width: 10%">Target Panen</th>
-                                    <th style="width: 10%">Target Hasil Panen</th>
                                     <th style="width: 15%">Foto</th>
                                     <th style="width: 20%">Action</th>
                                 </tr>
