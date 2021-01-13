@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class SalesForm extends Model
 {
-    use CrudTrait;
+    use CrudTrait, SoftDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -113,7 +114,7 @@ class SalesForm extends Model
         if (Str::startsWith($value, 'data:image'))
         {
             // 0. Make the image
-            $image = \Image::make($value)->encode('jpg', 480);
+            $image = \Image::make($value)->encode('jpg', 100);
 
             // 1. Generate a filename.
             $filename = md5($value.time()).'.jpg';

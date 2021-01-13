@@ -30,6 +30,7 @@ class CreateSalesFormsTable extends Migration
             $table->integer('pool_qty')->nullable();
             $table->text('description')->nullable();
             $table->string('user_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

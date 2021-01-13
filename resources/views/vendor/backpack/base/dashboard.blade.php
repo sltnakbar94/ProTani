@@ -2,10 +2,11 @@
 
 @section('content')
 
-{{-- @include('dashboard.filter')
+{{-- @include('dashboard.filter') --}}
 @include('dashboard.counter')
 @include('dashboard.view-map')
-@include('dashboard.kpm') --}}
+@include('dashboard.job')
+{{-- @include('dashboard.kpm') --}}
 
 @endsection
 

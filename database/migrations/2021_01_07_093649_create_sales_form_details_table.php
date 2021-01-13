@@ -32,6 +32,7 @@ class CreateSalesFormDetailsTable extends Migration
             $table->string('regency_id');
             $table->string('province_id');
             $table->string('user_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -6,7 +6,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Charts\SalesLineChart;
 use App\Models\OrderDetail;
-use App\Models\Produksi;
+use App\Models\SalesForm;
+use App\User;
 use App\Models\SalesFormDetail;
 use Carbon;
 use DB;
@@ -30,6 +31,7 @@ class AdminController extends Controller
      */
     public function dashboard(Request $request)
     {
+        $this->showAll();
 
         return view(backpack_view('dashboard'), $this->data);
     }
@@ -127,33 +129,16 @@ class AdminController extends Controller
 
     public function showAll()
     {
-        $produksi = Produksi::sum('qty');
-        $stok_paket = Produksi::sum('qty') - OrderDetail::where('status_order', 1)->sum('qty');
-        $paket_keluar = OrderDetail::where('status_order', 1)->sum('qty');
-        $sedang_dikirim = OrderDetail::where('status_order', 1)->where('status_terima', 0)->where('status_terima', 0)->sum('qty');
-        $sampai_ketujuan = OrderDetail::where('status_terima', '>', 0)->sum('qty');
+        $petani = SalesForm::distinct('id_number')->count('id');
+        $kolam = SalesFormDetail::count('id');
 
         // redis check here
         $this->data['dashboard'] = [
-            'total_produksi' => [
-                'progress' => ($produksi > 0) ? ($produksi / $produksi) * 100 : 0,
-                'count' => $produksi,
+            'petani' => [
+                'count' => $petani,
             ],
-            'stok_paket' => [
-                'progress' => ($produksi > 0) ? ($stok_paket / $produksi) * 100 : 0,
-                'count' => $stok_paket,
-            ],
-            'paket_keluar' => [
-                'progress' => ($produksi > 0) ? ($paket_keluar / $produksi)  * 100 : 0,
-                'count' => $paket_keluar,
-            ],
-            'sedang_dikirim' => [
-                'progress' => ($paket_keluar > 0) ? ($sedang_dikirim / $paket_keluar) * 100 : 0,
-                'count' => $sedang_dikirim,
-            ],
-            'sampai_ketujuan' => [
-                'progress' => ($paket_keluar > 0) ? ($sampai_ketujuan / $paket_keluar) * 100 : 0,
-                'count' => $sampai_ketujuan,
+            'kolam' => [
+                'count' => $kolam,
             ],
         ];
 
