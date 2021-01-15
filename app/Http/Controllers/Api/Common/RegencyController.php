@@ -28,6 +28,7 @@ class RegencyController extends Controller
         } else {
             $results = Regency::where('province_id', $selected_province)->paginate(10);
         }
+        // dd($results, $province, $selected_province, $form, $search_term, $page);
 
         // $results = Regency::whereIn('id', [3271, 3275, 3671, 3674, 3276])->paginate(10);
 

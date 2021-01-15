@@ -1,4 +1,19 @@
 <div class="form-group">
+    <label class="control-label" for="regency_id">Kota</label>
+
+    <div>
+        <select name="regency_id" id="regency_id" class="form-control{{ $errors->has('regency_id') ? ' is-invalid' : '' }}" required>
+            <option value="">Pilih Kota</option>
+        </select>
+        @if ($errors->has('regency_id'))
+            <span class="invalid-feedback">
+                <strong>{{ $errors->first('regency_id') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group">
     <label class="control-label" for="district_id">Kecamatan</label>
 
     <div>

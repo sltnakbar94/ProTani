@@ -6,6 +6,8 @@ use App\Http\Requests\SalesFormRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\DB;
+use App\Models\SalesForm;
+use App\Jobs\ProcessResizeFormImage;
 use Auth;
 
 /**
@@ -32,6 +34,7 @@ class SalesFormCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/salesform');
         CRUD::setEntityNameStrings('Form Sales', 'Form Sales');
         $this->crud->setShowView('order.show');
+        $this->crud->setCreateView('order.create');
     }
 
     /**
@@ -296,5 +299,40 @@ class SalesFormCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function store(SalesFormRequest $request)
+    {
+
+        $sales_form = new SalesForm;
+        $sales_form->form_id = $request->form_id;
+        $sales_form->user_id = $request->user_id;
+        $sales_form->farmer_name = $request->farmer_name;
+        $sales_form->id_number = $request->id_number;
+        $sales_form->phone_number = $request->phone_number;
+        $sales_form->province_id = $request->province_id;
+        $sales_form->regency_id = $request->regency_id;
+        $sales_form->district_id = $request->district_id;
+        $sales_form->village_id = $request->village_id;
+        $sales_form->id_address = $request->id_address;
+        $sales_form->rt = $request->rt;
+        $sales_form->rw = $request->rw;
+        $sales_form->lat = $request->lat;
+        $sales_form->lng = $request->lng;
+        $sales_form->site_address = $request->site_address;
+        $sales_form->description = $request->description;
+        if($request->hasFile('idpict')) {
+            $file = $request->file('idpict');
+            $path = $file->storeAs('sales_forms', strtolower($sales_form->form_id) .'-' . date('Ymdhis') . '.' . $file->getClientOriginalExtension() , 'public');
+            $sales_form->idpict = $path;
+        }
+        $sales_form->save();
+
+        if($request->hasFile('foto')) {
+            ProcessResizeFormImage::dispatch($sales_form)->delay(now()->addSeconds(3));
+        }
+
+        \Alert::add('success', 'Berhasil tambah data order ' . $sales_form->form_id)->flash();
+        return redirect()->back();
     }
 }

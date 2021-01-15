@@ -1,3 +1,7 @@
+@php
+    $form = DB::table('sales_forms')->where('form_id', '=', $form_id)->first();
+    $count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)->count();
+@endphp
 <!-- Modal -->
 <div class="modal fade" id="addModalSalesFormDetail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addModalSalesFormDetailLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -12,13 +16,10 @@
         <div class="alert alert-danger" id="form-modal-alert" style="display:none;">Data telah tersimpan</div>
         <form action="{{ route('salesformdetail.store') }}" enctype="multipart/form-data" method="post" name="sales_form_detail_add" id="sales-form-detail-add">
             @csrf
-            <input type="hidden" name="sales_form_id" value="{{ $crud->entry->id }}">
+            <input type="hidden" name="sales_form_id" value="{{ $form_id+1 }}">
 
             <div class="form-group">
                 <label class="control-label" for="pool_number">Nomor Kolam</label>
-@php
-    $count = DB::table('sales_form_details')->where('sales_form_id', '=', $crud->entry->id)->count();
-@endphp
                 <div>
                     <input type="number" class="form-control{{ $errors->has('pool_number') ? ' is-invalid' : '' }}" name="pool_number" name="pool_number" id="pool_number" value="{{ $count+1 }}" required>
 
@@ -110,25 +111,25 @@
             <div class="form-group" style="display:none;">
                 <label class="control-label" for="province_id">province_id</label>
                 <div>
-                    <input type="text" class="form-control" name="province_id" id="province_id" value="{{ $crud->entry->province_id }}" readonly="readonly">
+                    <input type="text" class="form-control" name="province_id" id="province_id" value="{{ @$form->province_id }}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group" style="display:none;">
                 <label class="control-label" for="regency_id">regency_id</label>
                 <div>
-                    <input type="text" class="form-control" name="regency_id" id="regency_id" value="{{ $crud->entry->regency_id }}" readonly="readonly">
+                    <input type="text" class="form-control" name="regency_id" id="regency_id" value="{{ @$form->regency_id }}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group" style="display:none;">
                 <label class="control-label" for="district_id">district_id</label>
                 <div>
-                    <input type="text" class="form-control" name="district_id" id="district_id" value="{{ $crud->entry->district_id }}" readonly="readonly">
+                    <input type="text" class="form-control" name="district_id" id="district_id" value="{{ @$form->district_id }}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group" style="display:none;">
                 <label class="control-label" for="village_id">village_id</label>
                 <div>
-                    <input type="text" class="form-control" name="village_id" id="village_id" value="{{ $crud->entry->village_id }}" readonly="readonly">
+                    <input type="text" class="form-control" name="village_id" id="village_id" value="{{ @$form->village_id }}" readonly="readonly">
                 </div>
             </div>
             <div class="form-group" style="display:none;">
