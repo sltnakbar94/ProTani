@@ -52,7 +52,7 @@ class SalesForm extends Model
     public function salesDetail()
     {
         return $this->hasOne(SalesFormDetail::class, 'sales_form_id')
-            ->where('sales_form_id', $this->id);
+            ->where('sales_form_id', $this->form_id);
     }
 
     public function province()
