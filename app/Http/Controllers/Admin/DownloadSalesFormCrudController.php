@@ -200,22 +200,16 @@ class DownloadSalesFormCrudController extends CrudController
             'label' => 'Tanggal Panen'
         ]);
 
-        // $this->crud->addColumn([
-        //     'name' => 'harvest_qty',
-        //     'type' => 'text',
-        //     'label' => 'Target Panen'
-        // ]);
+        $this->crud->addColumn([
+            'name' => 'harvest_qty',
+            'type' => 'text',
+            'label' => 'Target Panen'
+        ]);
 
         $this->crud->addColumn([
             'name' => 'harvest_qty',
             'type' => 'text',
-            'label' => 'Estimasi Hasil Panen (Kg)'
-        ]);
-
-        $this->crud->addColumn([
-            'name' => 'result',
-            'type' => 'text',
-            'label' => 'Jumlah Panen (Kg)'
+            'label' => 'Hasil Panen'
         ]);
 
         $this->crud->addColumn([
