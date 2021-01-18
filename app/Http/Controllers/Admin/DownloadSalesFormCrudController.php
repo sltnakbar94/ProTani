@@ -138,10 +138,19 @@ class DownloadSalesFormCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'site_address',
-            'label' => 'Alamat Lokasi',
+            'label' => 'Lokasi Kolam',
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'site_address',
+            'model' => 'App/Models/Salesform'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'user_id',
+            'label' => 'Nama User',
+            'type' => 'select',
+            'entity'    => 'downloadSalesForm',
+            'attribute' => 'user_id',
             'model' => 'App/Models/Salesform'
         ]);
 
@@ -164,7 +173,7 @@ class DownloadSalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'pool_large',
             'type' => 'text',
-            'label' => 'Lebar Kolam'
+            'label' => 'Luas Kolam (m2)'
         ]);
 
         $this->crud->addColumn([
@@ -194,21 +203,34 @@ class DownloadSalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'harvest_qty',
             'type' => 'text',
-            'label' => 'Jumlah Panen'
+            'label' => 'Target Panen'
         ]);
 
         $this->crud->addColumn([
             'name' => 'harvest_qty',
             'type' => 'text',
-            'label' => 'Target Panen'
+            'label' => 'Hasil Panen'
         ]);
 
         $this->crud->addColumn([
-            'name'      => 'sitepict', // The db column name
-            'label'     => 'Foto Lokasi', // Table column heading
-            'type'      => 'image',
-            'prefix' => 'storage/'
+            'name' => 'lat',
+            'type' => 'text',
+            'label' => 'Latitude'
         ]);
+
+        $this->crud->addColumn([
+            'name' => 'lng',
+            'type' => 'text',
+            'label' => 'Longitude'
+        ]);
+
+
+        // $this->crud->addColumn([
+        //     'name'      => 'sitepict', // The db column name
+        //     'label'     => 'Foto Lokasi', // Table column heading
+        //     'type'      => 'image',
+        //     'prefix' => 'storage/'
+        // ]);
 
         $this->crud->enableExportButtons();
         /**

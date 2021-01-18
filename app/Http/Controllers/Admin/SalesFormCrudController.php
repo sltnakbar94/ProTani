@@ -30,7 +30,7 @@ class SalesFormCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\SalesForm::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/salesform');
-        CRUD::setEntityNameStrings('Form Sales', 'Form Sales');
+        CRUD::setEntityNameStrings('Data', 'Tambah Data');
         $this->crud->setShowView('order.show');
     }
 
@@ -134,7 +134,7 @@ class SalesFormCrudController extends CrudController
             'entity' => 'user',
             'attribute' => 'name',
             'model' => 'App\User',
-            'label' => 'Sales'
+            'label' => 'Nama User'
         ]);
 
         /**
@@ -153,6 +153,7 @@ class SalesFormCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SalesFormRequest::class);
+        $this->crud->removeSaveActions(['save_and_back','save_and_new','save_and_edit']);
 
         $this->crud->addField([
             'name' => 'user_id',
@@ -264,7 +265,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'site_address',
-            'label'           => "Alamat Lokasi",
+            'label'           => "Lokasi Kolam",
             'type'            => 'text',
         ]);
 
