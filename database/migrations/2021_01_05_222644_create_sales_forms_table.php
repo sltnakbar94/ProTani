@@ -16,7 +16,6 @@ class CreateSalesFormsTable extends Migration
         Schema::create('sales_forms', function (Blueprint $table) {
             $table->id();
             $table->string('farmer_name');
-            $table->string('form_id');
             $table->string('phone_number')->nullable();
             $table->string('id_number');
             $table->string('id_address');

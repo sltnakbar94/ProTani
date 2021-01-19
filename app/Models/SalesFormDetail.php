@@ -38,7 +38,7 @@ class SalesFormDetail extends Model
 
     public function salesForm()
     {
-        return $this->belongsTo(SalesForm::class, 'sales_form_id', 'form_id');
+        return $this->belongsTo(SalesForm::class, 'sales_form_id', 'id');
     }
 
     /*
