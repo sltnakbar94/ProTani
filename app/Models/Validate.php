@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Validate extends Model
 {
@@ -34,6 +35,31 @@ class Validate extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function regency()
+    {
+        return $this->belongsTo(Regency::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
 
     /*
     |--------------------------------------------------------------------------
