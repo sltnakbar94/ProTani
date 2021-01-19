@@ -31,7 +31,7 @@ $count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)-
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="pool_large">Luas Kolam</label>
+                <label class="control-label" for="pool_large">Luas Kolam (m2)</label>
                 <div>
                     <input type="number" class="form-control{{ $errors->has('pool_large') ? ' is-invalid' : '' }}" name="pool_large" value="{{ old('pool_large') }}" required>
                     @if ($errors->has('pool_large'))
@@ -75,7 +75,7 @@ $count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)-
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="harvest_qty">Target Panen</label>
+                <label class="control-label" for="harvest_qty">Estimasi Hasil Panen</label>
                 <div>
                     <input type="number" class="form-control{{ $errors->has('harvest_qty') ? ' is-invalid' : '' }}" name="harvest_qty" value="{{ old('harvest_qty') }}" required>
                     @if ($errors->has('harvest_qty'))
@@ -86,7 +86,7 @@ $count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)-
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="result">Hasil Panen</label>
+                <label class="control-label" for="result">Jumlah Panen (Kg)</label>
                 <div>
                     <input type="text" class="form-control{{ $errors->has('result') ? ' is-invalid' : '' }}" name="result" value="{{ old('result') }}" required>
                     @if ($errors->has('result'))
