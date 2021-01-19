@@ -34,7 +34,6 @@ class SalesFormCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/salesform');
         CRUD::setEntityNameStrings('Data', 'Tambah Data');
         $this->crud->setShowView('order.show');
-        $this->crud->setCreateView('order.create');
     }
 
     /**
@@ -269,7 +268,7 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'            => 'site_address',
             'label'           => "Lokasi Kolam",
-            'type'            => 'text',
+            'type'            => 'address_algolia',
         ]);
 
         $this->crud->addField([

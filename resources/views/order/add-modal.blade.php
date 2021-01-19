@@ -1,5 +1,5 @@
 @php
-$count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)->count();
+$count = DB::table('sales_form_details')->where('sales_form_id', '=', $crud->entry->id)->count();
 @endphp
 <!-- Modal -->
 <div class="modal fade" id="addModalSalesFormDetail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addModalSalesFormDetailLabel" aria-hidden="true">
@@ -92,17 +92,6 @@ $count = DB::table('sales_form_details')->where('sales_form_id', '=', $form_id)-
                     @if ($errors->has('result'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('result') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="sitepict">Foto</label>
-                <div>
-                    <input type="file" name="sitepict" accept="image/*" capture="user" class="form-control{{ $errors->has('sitepict') ? ' is-invalid' : '' }}">
-                    @if ($errors->has('sitepict'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('sitepict') }}</strong>
                         </span>
                     @endif
                 </div>
