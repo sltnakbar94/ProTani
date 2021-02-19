@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Models\SalesForm;
+use App\Models\Regency;
+use App\Models\Province;
+use App\Models\District;
+use App\Models\Village;
 
 
 class DownloadSalesForm extends Model
@@ -38,6 +44,11 @@ class DownloadSalesForm extends Model
     public function downloadSalesForm()
     {
         return $this->belongsTo(SalesForm::class, 'sales_form_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function province()
