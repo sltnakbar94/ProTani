@@ -49,32 +49,32 @@ class DownloadSalesFormCrudController extends CrudController
         $this->crud->removeButton('create');
 
 
-        // $this->crud->addColumn([
-        //     'name' => 'farmer_name',
-        //     'label' => 'Nama Petani',
-        //     'type' => 'select',
-        //     'entity'    => 'downloadSalesForm',
-        //     'attribute' => 'farmer_name',
-        //     'model' => 'App/Models/Salesform'
-        // ]);
+        $this->crud->addColumn([
+            'name' => 'farmer_name',
+            'label' => 'Nama Petani',
+            'type' => 'select',
+            'entity'    => 'downloadSalesForm',
+            'attribute' => 'farmer_name',
+            'model' => 'App/Models/SalesForm'
+        ]);
 
-        // $this->crud->addColumn([
-        //     'name' => 'phone_number',
-        //     'label' => 'No HP',
-        //     'type' => 'select',
-        //     'entity'    => 'downloadSalesForm',
-        //     'attribute' => 'phone_number',
-        //     'model' => 'App/Models/Salesform'
-        // ]);
+        $this->crud->addColumn([
+            'name' => 'phone_number',
+            'label' => 'No HP',
+            'type' => 'select',
+            'entity'    => 'downloadSalesForm',
+            'attribute' => 'phone_number',
+            'model' => 'App/Models/SalesForm'
+        ]);
 
-        // $this->crud->addColumn([
-        //     'name' => 'id_number',
-        //     'label' => 'No KTP',
-        //     'type' => 'select',
-        //     'entity'    => 'downloadSalesForm',
-        //     'attribute' => 'id_number',
-        //     'model' => 'App/Models/Salesform'
-        // ]);
+        $this->crud->addColumn([
+            'name' => 'id_number',
+            'label' => 'No KTP',
+            'type' => 'select',
+            'entity'    => 'downloadSalesForm',
+            'attribute' => 'id_number',
+            'model' => 'App/Models/SalesForm'
+        ]);
 
         $this->crud->addColumn([
             'name' => 'province',
@@ -114,7 +114,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'rt',
-            'model' => 'App/Models/Salesform'
+            'model' => 'App/Models/SalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -123,7 +123,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'rw',
-            'model' => 'App/Models/Salesform'
+            'model' => 'App/Models/SalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -132,7 +132,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'id_address',
-            'model' => 'App/Models/Salesform'
+            'model' => 'App/Models/SalesForm'
         ]);
 
 
@@ -142,7 +142,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'site_address',
-            'model' => 'App/Models/Salesform'
+            'model' => 'App/Models/SalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -151,7 +151,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'user_id',
-            'model' => 'App/Models/Salesform'
+            'model' => 'App/Models/SalesForm'
         ]);
 
         // $this->crud->addColumn([
@@ -161,7 +161,7 @@ class DownloadSalesFormCrudController extends CrudController
         //     'prefix' => '/',
         //     'entity'    => 'downloadSalesForm',
         //     'attribute' => 'idpict',
-        //     'model' => 'App/Models/Salesform'
+        //     'model' => 'App/Models/SalesForm'
         // ]);
 
         $this->crud->addColumn([
