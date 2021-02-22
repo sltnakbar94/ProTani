@@ -49,14 +49,14 @@ class DownloadSalesFormCrudController extends CrudController
         $this->crud->removeButton('create');
 
 
-        $this->crud->addColumn([
-            'name' => 'farmer_name',
-            'label' => 'Nama Petani',
-            'type' => 'select',
-            'entity'    => 'downloadSalesForm',
-            'attribute' => 'farmer_name',
-            'model' => 'App/Models/Salesform'
-        ]);
+        // $this->crud->addColumn([
+        //     'name' => 'farmer_name',
+        //     'label' => 'Nama Petani',
+        //     'type' => 'select',
+        //     'entity'    => 'downloadSalesForm',
+        //     'attribute' => 'farmer_name',
+        //     'model' => 'App/Models/Salesform'
+        // ]);
 
         $this->crud->addColumn([
             'name' => 'phone_number',
