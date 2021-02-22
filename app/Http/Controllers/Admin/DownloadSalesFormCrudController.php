@@ -58,14 +58,14 @@ class DownloadSalesFormCrudController extends CrudController
         //     'model' => 'App/Models/Salesform'
         // ]);
 
-        $this->crud->addColumn([
-            'name' => 'phone_number',
-            'label' => 'No HP',
-            'type' => 'select',
-            'entity'    => 'downloadSalesForm',
-            'attribute' => 'phone_number',
-            'model' => 'App/Models/Salesform'
-        ]);
+        // $this->crud->addColumn([
+        //     'name' => 'phone_number',
+        //     'label' => 'No HP',
+        //     'type' => 'select',
+        //     'entity'    => 'downloadSalesForm',
+        //     'attribute' => 'phone_number',
+        //     'model' => 'App/Models/Salesform'
+        // ]);
 
         $this->crud->addColumn([
             'name' => 'id_number',
