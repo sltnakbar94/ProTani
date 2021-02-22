@@ -154,15 +154,15 @@ class DownloadSalesFormCrudController extends CrudController
         //     'model' => 'App/Models/DownloadSalesForm'
         // ]);
 
-        $this->crud->addColumn([
-            'name' => 'idpict',
-            'label' => 'Foto',
-            'type' => 'image',
-            'prefix' => '/',
-            'entity'    => 'downloadSalesForm',
-            'attribute' => 'idpict',
-            'model' => 'App/Models/DownloadSalesForm'
-        ]);
+        // $this->crud->addColumn([
+        //     'name' => 'idpict',
+        //     'label' => 'Foto',
+        //     'type' => 'image',
+        //     'prefix' => '/',
+        //     'entity'    => 'downloadSalesForm',
+        //     'attribute' => 'idpict',
+        //     'model' => 'App/Models/DownloadSalesForm'
+        // ]);
 
         $this->crud->addColumn([
             'name' => 'pool_number',
