@@ -55,7 +55,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'farmer_name',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -64,7 +64,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'phone_number',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -73,7 +73,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'id_number',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -114,7 +114,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'rt',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -123,7 +123,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'rw',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -132,7 +132,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'id_address',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
 
@@ -142,7 +142,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'site_address',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         $this->crud->addColumn([
@@ -151,7 +151,7 @@ class DownloadSalesFormCrudController extends CrudController
             'type' => 'select',
             'entity'    => 'downloadSalesForm',
             'attribute' => 'user_id',
-            'model' => 'App/Models/SalesForm'
+            'model' => 'App/Models/DownloadSalesForm'
         ]);
 
         // $this->crud->addColumn([
@@ -161,7 +161,7 @@ class DownloadSalesFormCrudController extends CrudController
         //     'prefix' => '/',
         //     'entity'    => 'downloadSalesForm',
         //     'attribute' => 'idpict',
-        //     'model' => 'App/Models/SalesForm'
+        //     'model' => 'App/Models/DownloadSalesForm'
         // ]);
 
         $this->crud->addColumn([
