@@ -44,6 +44,14 @@ class SalesFormCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        
+
+        $this->crud->addColumn([
+            'name' => 'survey_date',
+            'type' => 'text',
+            'label' => 'Tanggal Survey'
+        ]);
+
         $this->crud->addColumn([
             'name' => 'farmer_name',
             'type' => 'text',
@@ -163,6 +171,12 @@ class SalesFormCrudController extends CrudController
             'value' => Auth::id()
         ]);
 
+        $this->crud->addColumn([
+            'name' => 'survey_date',
+            'type' => 'text',
+            'label' => 'Tanggal Survey'
+        ]);
+
         $this->crud->addField([
             'name'            => 'farmer_name',
             'label'           => "Nama Petani",
@@ -272,9 +286,105 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'pool_qty',
-            'label'           => "Jumlah Kolam",
+            'name'            => 'pokdakan_name',
+            'label'           => "Nama Kelompok Pembudidaya Ikan",
+            'type'            => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'position_in_organization',
+            'label'           => "Posisi Dikelompok",
+            'type'            => 'text',
+        ]);
+
+         $this->crud->addField([
+            'name'            => 'lenght_effort',
+            'label'           => "Lama Usaha",
+            'type'            => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'fish_type',
+            'label'           => "Jenis Ikan",
+            'type'            => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'pool_area',
+            'label'           => "Luas Kolam",
             'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'pool_type',
+            'label'           => "Jenis Kolam",
+            'type'            => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'fish_mantaince_period',
+            'label'           => "Masa Pemeliharaan Ikan",
+            'type'            => 'date',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'yields',
+            'label'           => "Hasil Penjualan Ikan/Kg",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'fish_food_brand',
+            'label'           => "Merk Pakan Ikan",
+            'type'            => 'text',
+        ]);
+        
+        $this->crud->addField([
+            'name'            => 'fish_food_type',
+            'label'           => "Tipe Pakan Ikan",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'fish_food_retrieval_system',
+            'label'           => "Sistem Pengambilan Pakan Ikan",
+            'type'            => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name'           => 'fish_food_price',
+            'label'          => "Harga Pakan Ikan/Kg",
+            'type'           => 'number'
+        ]);
+
+        $this->crud->addField([
+            'name'          => 'food_fish_payment_method',
+            'label'         => 'Sistem Pembayaran Pakan Ikan',
+            'type'          => 'text'
+        ]);
+
+        $this->crud->addField([
+            'name'      => 'source_fund' ,
+            'label'     => 'Sumber Modal Usaha',
+            'type'      => 'text'
+        ]);
+
+        $this->crud->addField([
+            'name'      => 'fish_seed_source' ,
+            'label'     => 'Asal Benih Ikan',
+            'type'      => 'text'
+        ]);
+
+        $this->crud->addField([
+            'name'      => 'harvest_cost' ,
+            'label'     => 'Biaya Panen',
+            'type'      => 'number'
+        ]);
+
+        $this->crud->addField([
+            'name'      => 'harvest_method',
+            'label'     => 'Proses panen',
+            'type'      => 'text'
         ]);
 
         $this->crud->addField([
