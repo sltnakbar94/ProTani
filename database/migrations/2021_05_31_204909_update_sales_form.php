@@ -14,8 +14,8 @@ class UpdateSalesForm extends Migration
     public function up()
     {
         Schema::table('sales_forms', function(Blueprint $table) {
-            $table->date('form_date');
-            $table->string('pool_id');          
+            $table->date('form_date')->nullable();
+            $table->string('pool_id')->nullable();          
         });
     }
 
@@ -27,8 +27,8 @@ class UpdateSalesForm extends Migration
     public function down()
     {
         Schema::table('sales_forms', function(Blueprint $table) {
-            $table->date('form_date');
-            $table->date('pool_id');           
+            $table->date('form_date')->nullable();
+            $table->date('pool_id')->nullable();           
         });
     }
 }

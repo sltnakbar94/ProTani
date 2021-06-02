@@ -14,32 +14,33 @@ class UpdateTableSalesForm extends Migration
     public function up()
     {
         Schema::table('sales_forms', function(Blueprint $table) { 
-            $table->string('surveyor_id');
-            $table->integer('surveyor_phone_number');
-            $table->date('survey_date');
-            $table->string('rt_rw_pool');
-            $table->string('pool_province_id');
-            $table->string('pool_regency_id');
-            $table->string('pool_district_id');
-            $table->string('pool_village_id');
-            $table->string('pokdakan_name');
-            $table->string('position_in_organization');
-            $table->integer('lenght_effort');
-            $table->string('fish_type');
-            $table->string('pool_area');
-            $table->string('pool_type');
-            $table->string('yields');
-            $table->string('fish_food_type');
-            $table->string('fish_food_brand');
-            $table->string('fish_food_price');
-            $table->string('fish_food_needs');
-            $table->string('payment_method');
-            $table->string('fish_food_retrieval_system');
-            $table->string('source_fund');
-            $table->string('fish_seed_source');
-            $table->string('fish_mantaince_period');
-            $table->string('harvest_cost');
-            $table->string('harvest_method');        
+            $table->string('surveyor_id')->nullable();
+            $table->integer('surveyor_phone_number')->nullable();
+            $table->date('survey_date')->nullable();
+            $table->string('rt_pool')->nullable();
+            $table->string('rw_pool')->nullable();
+            $table->string('pool_province_id')->nullable();
+            $table->string('pool_regency_id')->nullable();
+            $table->string('pool_district_id')->nullable();
+            $table->string('pool_village_id')->nullable();
+            $table->string('pokdakan_name')->nullable();
+            $table->string('position_in_organization')->nullable();
+            $table->integer('lenght_effort')->nullable();
+            $table->string('fish_type')->nullable();
+            $table->string('pool_area')->nullable();
+            $table->string('pool_type')->nullable();
+            $table->string('yields')->nullable();
+            $table->string('fish_food_type')->nullable();
+            $table->string('fish_food_brand')->nullable();
+            $table->string('fish_food_price')->nullable();
+            $table->string('fish_food_needs')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('fish_food_retrieval_system')->nullable();
+            $table->string('source_fund')->nullable();
+            $table->string('fish_seed_source')->nullable();
+            $table->string('fish_mantaince_period')->nullable();
+            $table->string('harvest_cost')->nullable();
+            $table->string('harvest_method')->nullable();        
         });
     }
 
@@ -51,32 +52,33 @@ class UpdateTableSalesForm extends Migration
     public function down()
     {
         Schema::table('sales_forms', function(Blueprint $table) {
-            $table->string('surveyor_id');
-            $table->integer('surveyor_phone_number');
-            $table->date('survey_date');
-            $table->string('rt_rw_pool');
-            $table->string('pool_province_id');
-            $table->string('pool_regency_id');
-            $table->string('pool_district_id');
-            $table->string('pool_village_id');
-            $table->string('pokdakan_name');
-            $table->string('position_in_organization');
-            $table->integer('lenght_effort');
-            $table->string('fish_type');
-            $table->string('pool_area');
-            $table->string('pool_type');
-            $table->string('yields');
-            $table->string('fish_food_type');
-            $table->string('fish_food_brand');
-            $table->string('fish_food_price');
-            $table->string('fish_food_needs');
-            $table->string('payment_method');
-            $table->string('fish_food_retrieval_system');
-            $table->string('source_fund');
-            $table->string('fish_seed_source');
-            $table->string('fish_mantaince_period');
-            $table->string('harvest_cost');
-            $table->string('harvest_method');        
+            $table->string('surveyor_id')->nullable();
+            $table->integer('surveyor_phone_number')->nullable();
+            $table->date('survey_date')->nullable();
+            $table->string('rt_pool')->nullable();
+            $table->string('rw_pool')->nullable();
+            $table->string('pool_province_id')->nullable();
+            $table->string('pool_regency_id')->nullable();
+            $table->string('pool_district_id')->nullable();
+            $table->string('pool_village_id')->nullable();
+            $table->string('pokdakan_name')->nullable();
+            $table->string('position_in_organization')->nullable();
+            $table->integer('lenght_effort')->nullable();
+            $table->string('fish_type')->nullable();
+            $table->string('pool_area')->nullable();
+            $table->string('pool_type')->nullable();
+            $table->string('yields')->nullable();
+            $table->string('fish_food_type')->nullable();
+            $table->string('fish_food_brand')->nullable();
+            $table->string('fish_food_price')->nullable();
+            $table->string('fish_food_needs')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('fish_food_retrieval_system')->nullable();
+            $table->string('source_fund')->nullable();
+            $table->string('fish_seed_source')->nullable();
+            $table->string('fish_mantaince_period')->nullable();
+            $table->string('harvest_cost')->nullable();
+            $table->string('harvest_method')->nullable();        
         });
     }
 }

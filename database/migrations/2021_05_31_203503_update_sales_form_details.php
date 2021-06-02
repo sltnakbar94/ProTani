@@ -14,20 +14,20 @@ class UpdateSalesFormDetails extends Migration
     public function up()
     {
         Schema::table('sales_form_details', function(Blueprint $table) {
-            $table->date('pokdakan_name');
-            $table->string('position_in_organization');
-            $table->string('yields');
-            $table->string('fish_food_type');
-            $table->string('fish_food_brand');
-            $table->string('fish_food_price');
-            $table->string('fish_food_needs');
-            $table->string('payment_method');
-            $table->string('fish_food_retrieval_system');
-            $table->string('source_fund');
-            $table->string('fish_seed_source');
-            $table->string('fish_mantaince_period');
-            $table->string('harvest_cost');
-            $table->string('harvest_method');
+            $table->date('pokdakan_name')->nullable();
+            $table->string('position_in_organization')->nullable();
+            $table->string('yields')->nullable();
+            $table->string('fish_food_type')->nullable();
+            $table->string('fish_food_brand')->nullable();
+            $table->string('fish_food_price')->nullable();
+            $table->string('fish_food_needs')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('fish_food_retrieval_system')->nullable();
+            $table->string('source_fund')->nullable();
+            $table->string('fish_seed_source')->nullable();
+            $table->string('fish_mantaince_period')->nullable();
+            $table->string('harvest_cost')->nullable();
+            $table->string('harvest_method')->nullable();
 
         });
     }
@@ -40,20 +40,20 @@ class UpdateSalesFormDetails extends Migration
     public function down()
     {
         Schema::table('sales_form_details', function(Blueprint $table) {
-            $table->date('pokdakan_name');
-            $table->string('position_in_organization');      
-            $table->string('yields') ;
-            $table->string('fish_food_type');
-            $table->string('fish_food_brand');
-            $table->string('fish_food_price');
-            $table->string('fish_food_needs');
-            $table->string('payment_method');
-            $table->string('fish_food_retrieval_system');
-            $table->string('source_fund');
-            $table->string('fish_seed_source');
-            $table->string('fish_mantaince_period');
-            $table->string('harvest_cost');
-            $table->string('harvest_method');
+            $table->date('pokdakan_name')->nullable();
+            $table->string('position_in_organization')->nullable();      
+            $table->string('yields')->nullable();
+            $table->string('fish_food_type')->nullable();
+            $table->string('fish_food_brand')->nullable();
+            $table->string('fish_food_price')->nullable();
+            $table->string('fish_food_needs')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('fish_food_retrieval_system')->nullable();
+            $table->string('source_fund')->nullable();
+            $table->string('fish_seed_source')->nullable();
+            $table->string('fish_mantaince_period')->nullable();
+            $table->string('harvest_cost')->nullable();
+            $table->string('harvest_method')->nullable();
         });
     }
 }

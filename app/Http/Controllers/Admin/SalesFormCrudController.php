@@ -296,9 +296,15 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'rt_rw_pool',
-            'label'           => "RT/RW Alamat Kolam",
-            'type'            => 'text',
+            'name'            => 'rt_pool',
+            'label'           => "RT",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'rw_pool',
+            'label'           => "RW",
+            'type'            => 'number',
         ]);
         
         $this->crud->addField([
