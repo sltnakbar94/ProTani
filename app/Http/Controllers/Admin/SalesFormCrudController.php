@@ -171,15 +171,15 @@ class SalesFormCrudController extends CrudController
             'value' => Auth::id()
         ]);
 
-        $this->crud->addColumn([
+        $this->crud->addField([
             'name' => 'survey_date',
-            'type' => 'text',
+            'type' => 'date',
             'label' => 'Tanggal Survey'
         ]);
 
         $this->crud->addField([
             'name'            => 'farmer_name',
-            'label'           => "Nama Petani",
+            'label'           => "Nama Pelaku Utama",
             'type'            => 'text',
         ]);
 
