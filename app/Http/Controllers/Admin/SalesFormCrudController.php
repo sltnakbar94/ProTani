@@ -189,7 +189,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'farmer_name',
-            'label'           => "Nama Pel",
+            'label'           => "Nama Petani",
             'type'            => 'text',
         ]);
 
