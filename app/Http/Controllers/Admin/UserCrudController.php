@@ -6,6 +6,11 @@ use Backpack\PermissionManager\app\Http\Controllers\UserCrudController as Backpa
 
 class UserCrudController extends BackpackUserCrudController
 {
+    // protected function setupListOperation()
+    // {
+    //     $this->crud->removeButton('delete');
+    //     $this->crud->setFromDB();
+    // }
     protected function addUserFields()
     {
         $this->crud->addFields([

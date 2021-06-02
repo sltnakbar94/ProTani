@@ -16,11 +16,11 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->user()->hasAnyRole(['superadmin', 'operator', 'eksekutif'])) {
+        if(!$request->user()->hasAnyRole(['superadmin', 'sales', 'manager'])) {
             Auth::logout();
             abort(403);
         }
-        
+
         return $next($request);
     }
 }

@@ -5,14 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Models\SalesForm;
-use App\Models\Regency;
-use App\Models\Province;
-use App\Models\District;
-use App\Models\Village;
 
-
-class DownloadSalesForm extends Model
+class Validate extends Model
 {
     use CrudTrait;
 
@@ -22,7 +16,7 @@ class DownloadSalesForm extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'sales_form_details';
+    protected $table = 'sales_forms';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -41,10 +35,6 @@ class DownloadSalesForm extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function downloadSalesForm()
-    {
-        return $this->belongsTo(SalesForm::class, 'sales_form_id', 'id');
-    }
 
     public function user()
     {
@@ -53,7 +43,7 @@ class DownloadSalesForm extends Model
 
     public function province()
     {
-        return $this->belongsTo('App\Models\Province');
+        return $this->belongsTo(Province::class);
     }
 
     public function regency()
@@ -70,6 +60,7 @@ class DownloadSalesForm extends Model
     {
         return $this->belongsTo(Village::class);
     }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

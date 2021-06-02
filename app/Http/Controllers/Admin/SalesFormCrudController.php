@@ -32,9 +32,8 @@ class SalesFormCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\SalesForm::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/salesform');
-        CRUD::setEntityNameStrings('Form Sales', 'Form Sales');
+        CRUD::setEntityNameStrings('Data', 'Tambah Data');
         $this->crud->setShowView('order.show');
-        $this->crud->setCreateView('order.create');
     }
 
     /**
@@ -137,7 +136,7 @@ class SalesFormCrudController extends CrudController
             'entity' => 'user',
             'attribute' => 'name',
             'model' => 'App\User',
-            'label' => 'Sales'
+            'label' => 'Nama User'
         ]);
 
         /**
@@ -156,6 +155,7 @@ class SalesFormCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SalesFormRequest::class);
+        $this->crud->removeSaveActions(['save_and_back','save_and_new','save_and_edit']);
 
         $this->crud->addField([
             'name' => 'user_id',
@@ -267,8 +267,8 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'site_address',
-            'label'           => "Alamat Lokasi",
-            'type'            => 'text',
+            'label'           => "Lokasi Kolam",
+            'type'            => 'address_algolia',
         ]);
 
         $this->crud->addField([
@@ -299,40 +299,5 @@ class SalesFormCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    public function store(SalesFormRequest $request)
-    {
-
-        $sales_form = new SalesForm;
-        $sales_form->form_id = $request->form_id;
-        $sales_form->user_id = $request->user_id;
-        $sales_form->farmer_name = $request->farmer_name;
-        $sales_form->id_number = $request->id_number;
-        $sales_form->phone_number = $request->phone_number;
-        $sales_form->province_id = $request->province_id;
-        $sales_form->regency_id = $request->regency_id;
-        $sales_form->district_id = $request->district_id;
-        $sales_form->village_id = $request->village_id;
-        $sales_form->id_address = $request->id_address;
-        $sales_form->rt = $request->rt;
-        $sales_form->rw = $request->rw;
-        $sales_form->lat = $request->lat;
-        $sales_form->lng = $request->lng;
-        $sales_form->site_address = $request->site_address;
-        $sales_form->description = $request->description;
-        if($request->hasFile('idpict')) {
-            $file = $request->file('idpict');
-            $path = $file->storeAs('sales_forms', strtolower($sales_form->form_id) .'-' . date('Ymdhis') . '.' . $file->getClientOriginalExtension() , 'public');
-            $sales_form->idpict = $path;
-        }
-        $sales_form->save();
-
-        if($request->hasFile('foto')) {
-            ProcessResizeFormImage::dispatch($sales_form)->delay(now()->addSeconds(3));
-        }
-
-        \Alert::add('success', 'Berhasil tambah data order ' . $sales_form->form_id)->flash();
-        return redirect()->back();
     }
 }

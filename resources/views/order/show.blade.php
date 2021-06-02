@@ -122,7 +122,8 @@
                                     <th style="width: 15%">Jenis Ikan</th>
                                     <th style="width: 10%">Mulai Penaburan</th>
                                     <th style="width: 10%">Tanggal Panen</th>
-                                    <th style="width: 10%">Target Panen</th>
+                                    <th style="width: 10%">Estimasi Hasil Panen</th>
+                                    <th style="width: 10%">Jumlah Panen (Kg)</th>
                                     <th style="width: 15%">Foto</th>
                                     <th style="width: 20%">Action</th>
                                 </tr>
@@ -141,6 +142,7 @@
                                         <td>{{ Carbon\Carbon::parse($od->plant_date)->format('d-m-Y') }}</td>
                                         <td>{{ Carbon\Carbon::parse($od->harvest_date)->format('d-m-Y') }}</td>
                                         <td>{{ number_format($od->harvest_qty) }}</td>
+                                        <td>{{ number_format($od->result) }}</td>
                                         @if ($od->sitepict != NULL)
                                             <td><img src="{{asset('storage/'.$od->sitepict)}}" style="width:100%"></td>
                                         @else
