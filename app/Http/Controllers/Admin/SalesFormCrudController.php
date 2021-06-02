@@ -8,7 +8,9 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\DB;
 use App\Models\SalesForm;
 use App\Jobs\ProcessResizeFormImage;
+use App\User;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 /**
  * Class SalesFormCrudController
@@ -35,6 +37,8 @@ class SalesFormCrudController extends CrudController
         CRUD::setEntityNameStrings('Data', 'Tambah Data');
         $this->crud->setShowView('order.show');
     }
+
+    
 
     /**
      * Define what happens when the List operation is loaded.
@@ -174,7 +178,7 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name' => 'suveyor_phone_number',
             'type' => 'hidden',
-            'value' => Auth::phone()
+            'value' => Auth::user()->phone
         ]);
 
         $this->crud->addField([
