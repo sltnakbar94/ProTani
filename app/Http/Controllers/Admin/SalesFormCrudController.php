@@ -172,6 +172,12 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name' => 'suveyor_phone_number',
+            'type' => 'hidden',
+            'value' => Auth::phone()
+        ]);
+
+        $this->crud->addField([
             'name' => 'survey_date',
             'type' => 'date',
             'label' => 'Tanggal Survey'
@@ -179,7 +185,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'farmer_name',
-            'label'           => "Nama Pelaku Utama",
+            'label'           => "Nama Pel",
             'type'            => 'text',
         ]);
 

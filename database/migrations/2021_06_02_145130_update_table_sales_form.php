@@ -14,6 +14,8 @@ class UpdateTableSalesForm extends Migration
     public function up()
     {
         Schema::table('sales_forms', function(Blueprint $table) { 
+            $table->string('surveyor_id');
+            $table->integer('surveyor_phone_number');
             $table->date('survey_date');
             $table->string('rt_rw_pool');
             $table->string('pool_province_id');
@@ -49,6 +51,8 @@ class UpdateTableSalesForm extends Migration
     public function down()
     {
         Schema::table('sales_forms', function(Blueprint $table) {
+            $table->string('surveyor_id');
+            $table->integer('surveyor_phone_number');
             $table->date('survey_date');
             $table->string('rt_rw_pool');
             $table->string('pool_province_id');
