@@ -51,6 +51,15 @@ class UserCrudController extends BackpackUserCrudController
                 ]
             ],
             [
+                'tab'   => 'Profile',
+                'name'  => 'phone',
+                'label' => 'Phone Number',
+                'type'  => 'number',
+                'attributes' => [
+                    'required' => true,
+                ]
+            ],
+            [
                 'tab'               => 'Profile',
                 // two interconnected entities
                 'label'             => 'Roles',
