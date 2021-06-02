@@ -27,10 +27,11 @@ class SalesFormRequest extends FormRequest
     {
         return [
             'farmer_name' => 'required',
-            'id_number' => 'digits:16',
+            'id_number' => 'required|digits:16',
             'id_address' => 'required',
             'rt' => 'required',
-            'rw' => 'required',
+            'rw' => 'required', 
+            
         ];
     }
 
