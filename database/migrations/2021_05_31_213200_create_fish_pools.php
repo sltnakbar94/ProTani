@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateSalesForm extends Migration
+class CreateFishPools extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class UpdateSalesForm extends Migration
      */
     public function up()
     {
-        Schema::table('sales_forms', function(Blueprint $table) {
-            $table->date('form_date');
-            $table->string('pool_id');          
+        Schema::create('fish_pools', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -26,9 +26,6 @@ class UpdateSalesForm extends Migration
      */
     public function down()
     {
-        Schema::table('sales_forms', function(Blueprint $table) {
-            $table->date('form_date');
-            $table->date('pool_id');           
-        });
+        Schema::dropIfExists('fish_pools');
     }
 }
