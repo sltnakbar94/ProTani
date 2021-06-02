@@ -278,32 +278,32 @@ class SalesFormCrudController extends CrudController
             'type'            => 'text',
         ]);
 
-        $this->crud->addField([
-            'label' => "Foto",
-            'name' => "idpict",
-            'type' => 'image',
-            'crop' => true, // set to true to allow cropping, false to disable
-            'upload' => true,
-            'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-            'disk'      => 'public', // in case you need to show images from a different disk
-            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        ]);
+        // $this->crud->addField([
+        //     'label' => "Foto",
+        //     'name' => "idpict",
+        //     'type' => 'image',
+        //     'crop' => true, // set to true to allow cropping, false to disable
+        //     'upload' => true,
+        //     'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
+        //     'disk'      => 'public', // in case you need to show images from a different disk
+        //     // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+        // ]);
 
         $this->crud->addField([
             'name'            => 'site_address',
-            'label'           => "Lokasi Kolam",
+            'label'           => "Alamat Kolam",
             'type'            => 'address_algolia',
         ]);
 
         $this->crud->addField([
             'name'            => 'rt_rw_pool',
-            'label'           => "RT/RW Lokasi Kolam",
+            'label'           => "RT/RW Alamat Kolam",
             'type'            => 'text',
         ]);
         
         $this->crud->addField([
             'name'            => 'pool_province_id',
-            'label'           => "Provinsi Lokasi Kolam",
+            'label'           => "Provinsi Alamat Kolam",
             'type'            => 'select2_from_ajax',
             'entity'          => 'province',
             'attribute'       => 'name',
@@ -315,7 +315,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'pool_regency_id',
-            'label'           => "Kota Lokasi Kolam",
+            'label'           => "Kota Alamat Kolam",
             'type'            => 'select2_from_ajax',
             'entity'          => 'regency',
             'attribute'       => 'name',
@@ -329,7 +329,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'pool_district_id',
-            'label'           => "Kecamatan Lokasi Kolam",
+            'label'           => "Kecamatan Alamat Kolam",
             'type'            => 'select2_from_ajax',
             'entity'          => 'district',
             'attribute'       => 'name',
@@ -343,7 +343,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'pool_village_id',
-            'label'           => "Kel/Desa Lokasi Kolam",
+            'label'           => "Kel/Desa Alamat Kolam",
             'type'            => 'select2_from_ajax',
             'entity'          => 'village',
             'attribute'       => 'name',
@@ -357,7 +357,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'pokdakan_name',
-            'label'           => "Nama Kelompok Pembudidaya Ikan",
+            'label'           => "Nama Kelompok Pembudidaya Ikan(POKDAKAN)",
             'type'            => 'text',
         ]);
 
@@ -381,7 +381,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'pool_area',
-            'label'           => "Luas Kolam",
+            'label'           => "Luas Lahan",
             'type'            => 'number',
         ]);
 
@@ -394,12 +394,12 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'            => 'fish_mantaince_period',
             'label'           => "Masa Pemeliharaan Ikan",
-            'type'            => 'date',
+            'type'            => 'text',
         ]);
 
         $this->crud->addField([
             'name'            => 'yields',
-            'label'           => "Hasil Penjualan Ikan/Kg",
+            'label'           => "Hasil Panen Ikan/Kg",
             'type'            => 'number',
         ]);
 
@@ -412,7 +412,7 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'            => 'fish_food_type',
             'label'           => "Tipe Pakan Ikan",
-            'type'            => 'number',
+            'type'            => 'text',
         ]);
 
         $this->crud->addField([
@@ -424,6 +424,12 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'           => 'fish_food_price',
             'label'          => "Harga Pakan Ikan/Kg",
+            'type'           => 'number'
+        ]);
+
+        $this->crud->addField([
+            'name'           => 'fish_food_needs',
+            'label'          => "Kebutuhan Pakan Ikan/Kg",
             'type'           => 'number'
         ]);
 

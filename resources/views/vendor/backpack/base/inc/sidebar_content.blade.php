@@ -1,5 +1,8 @@
 @if (backpack_user()->hasRole('sales'))
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('salesform') }}'><i class='fa fa-check-square-o nav-icon'></i> Form Sales</a></li>
+
 @endif
 
 @if(backpack_user()->hasRole('superadmin'))
