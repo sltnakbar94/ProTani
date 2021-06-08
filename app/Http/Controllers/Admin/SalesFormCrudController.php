@@ -581,7 +581,12 @@ class SalesFormCrudController extends CrudController
          $this->crud->addField([
             'name'            => 'lenght_effort',
             'label'           => "Lama Usaha(Bulan)",
-            'type'            => 'number',
+            'type'            => 'select_from_array',
+            'options'         => [
+                "0-1 Tahun" =>"0-1 Tahun" ,
+                "1-5 Tahun" =>"1-5 Tahun" ,
+                "> dari 5 Tahun" => "> dari 5 Tahun"
+            ]
         ]);
 
         $this->crud->addField([
@@ -593,85 +598,174 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'            => 'pool_area',
             'label'           => "Luas Lahan",
-            'type'            => 'number',
+            'type'            => 'select_from_array',
+            'options'         => [
+                '<50m' => '<50m',
+                '50m-100m' => '50m-100m' ,
+                '100m-500m' => '100m-500m',
+                '500m-1000m' => '500m-1000m',
+            ]
         ]);
 
         $this->crud->addField([
             'name'            => 'pool_type',
             'label'           => "Jenis Kolam",
-            'type'            => 'text',
+            'type'            => 'select_from_array',
+            'options'         => [
+                'Air Tenang'  => 'Air Tenang' ,
+                'Air Deras'   => 'Air Deras'
+            ]
         ]);
 
         $this->crud->addField([
             'name'            => 'fish_mantaince_period',
             'label'           => "Masa Pemeliharaan Ikan",
-            'type'            => 'text',
+            'type'            => 'select_from_array',
+            'options'         => [
+                '1-2 Bulan' => '1-2 Bulan',
+                '2-3 Bulan' => '2-3 Bulan',
+                '>3 Bulan' => '>3 Bulan'
+            ]  
         ]);
 
         $this->crud->addField([
             'name'            => 'yields',
             'label'           => "Hasil Panen Ikan/Kg",
-            'type'            => 'number',
+            'type'            => 'select_from_array',
+            'options'         => [
+                '100-250kg' => '100-250kg' ,
+                '250-500kg' => '250-500kg' ,
+                '500-750kg' => '500-750kg' ,
+                '750-1000kg'=> '750-1000kg',
+                '> 1 Ton'  => '> 1 Ton'   
+            ]
+        ]);
+
+        $this->crud->addField([
+            'name'            => '',
+            'label'           => 'Penjualan Hasil Ikan' ,
+            'type'            => 'select_from_array' ,
+            'options'         => [
+                'Perusahaan' => 'Perusahaan' ,
+                'Tengkulak'  => 'Tengkulak' ,
+                'Masyarakat Sekitar' => 'Masyarakat Sekitar' ,
+                'Others '  => 'Lain-Lain'
+            ]   
         ]);
 
         $this->crud->addField([
             'name'            => 'fish_food_brand',
             'label'           => "Merk Pakan Ikan",
-            'type'            => 'text',
+            'type'            => 'select_from_array',
+            'options'         => [
+                'CP-POKPHAND' => 'CP-POKPHAND' ,
+                'SINTA'       => 'SINTA' ,
+                'M Sakti'     => 'M Sakti' ,
+                'CARGILL'     => 'CARGILL' ,
+                'JAPFA'       => 'JAPFA' ,
+                'Others'      => 'Lain-Lain'
+            ]
         ]);
         
         $this->crud->addField([
             'name'            => 'fish_food_type',
             'label'           => "Tipe Pakan Ikan",
-            'type'            => 'text',
+            'type'            => 'select_from_array',
+            'options'         => [
+                'Tepung'       => 'Tepung'  ,
+                'Crumble'      => 'Crumble' ,
+                '1-2mm'        => '1-2mm' ,
+                '2-3mm'        => '2-3mm',
+                '> 3mm'        => '> 3mm'
+            ]
         ]);
 
         $this->crud->addField([
             'name'            => 'fish_food_retrieval_system',
             'label'           => "Sistem Pengambilan Pakan Ikan",
-            'type'            => 'text',
+            'type'            => 'select_from_array',
+            'options'         => [
+                'Diambil'   => 'Diambil' ,
+                'Diantar'   => 'Diantar'
+            ]
         ]);
 
         $this->crud->addField([
             'name'           => 'fish_food_price',
             'label'          => "Harga Pakan Ikan/Kg",
-            'type'           => 'number'
+            'type'           => 'select_from_array' ,
+            'options'        => [
+                '5000-10000'    => '5.000-10.000',
+                '10000-12000'   =>  '10.000-12.000',
+                '> 12000'       => '> 12.000'
+            ]
         ]);
 
         $this->crud->addField([
             'name'           => 'fish_food_needs',
-            'label'          => "Kebutuhan Pakan Ikan/Kg",
-            'type'           => 'number'
+            'label'          => "Kebutuhan Pakan / Siklus",
+            'type'           => 'select_from_array' ,
+            'options'        => [
+                '100-250kg' => '100-250kg',
+                '250-500kg' => '250-500kg',
+                '500-1000kg'=> '500-1000kg',
+                '> 1 Ton'   => '> 1 Ton'
+            ]
         ]);
 
         $this->crud->addField([
             'name'          => 'food_fish_payment_method',
             'label'         => 'Sistem Pembayaran Pakan Ikan',
-            'type'          => 'text'
+            'type'          => 'select_from_array' ,
+            'options'       => [
+                'Tunai'     =>'Tunai' ,
+                'Konsinyasi'=>'Konsinyasi'
+            ]
         ]);
 
         $this->crud->addField([
             'name'      => 'source_fund' ,
             'label'     => 'Sumber Modal Usaha',
-            'type'      => 'text'
+            'type'      => 'select_from_array' ,
+            'options'   => [
+                'Sendiri'   => 'Sendiri' ,
+                'Bank'      => 'Bank' ,
+                'Koperasi'  => 'Koperasi' ,
+                'Others'    => 'Lain-Lain'
+            ]
         ]);
 
         $this->crud->addField([
             'name'      => 'fish_seed_source' ,
             'label'     => 'Asal Benih Ikan',
-            'type'      => 'text'
+            'type'      => 'select_from_array',
+            'options'   => [
+                'Lokal'  => 'Lokal' ,
+                'Luar Sukabumi' => 'Luar Sukabumi' ,
+                'Others'    => 'Lain-lain'
+            ]
         ]);
 
         $this->crud->addField([
             'name'      => 'harvest_cost' ,
             'label'     => 'Biaya Panen',
-            'type'      => 'number'
+            'type'      => 'select_from_array' ,
+            'options'   => [
+                '< 1.000.000'           => '< 1.000.000' ,
+                '1.000.000 - 5.000.000' => '1.000.000 - 5.000.000' ,
+                '>5.000.000'            => '>5.000.000'
+            ]
         ]);
 
         $this->crud->addField([
             'name'      => 'harvest_method',
             'label'     => 'Proses panen',
-            'type'      => 'text'
+            'type'      => 'select_from_array',
+            'options'   => [
+                'Tradisional'   => 'Tradisional' ,
+                'Tim Panen'     => 'Tim Panen' ,
+                'Others'        => 'Lain-lain'
+            ]
         ]);
 
         $this->crud->addField([
