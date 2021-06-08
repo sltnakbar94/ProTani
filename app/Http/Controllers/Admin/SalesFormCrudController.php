@@ -642,7 +642,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => '',
+            'name'            => 'fish_sell_to',
             'label'           => 'Penjualan Hasil Ikan' ,
             'type'            => 'select_from_array' ,
             'options'         => [
