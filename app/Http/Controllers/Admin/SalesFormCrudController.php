@@ -774,6 +774,12 @@ class SalesFormCrudController extends CrudController
             'type'            => 'textarea',
         ]);
 
+        $this->crud->addField([
+            'name'            => 'pool_qty',
+            'label'           => "Jumlah Kolam",
+            'type'            => 'number',
+        ]);
+
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
