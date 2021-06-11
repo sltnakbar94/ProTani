@@ -38,7 +38,7 @@ class SalesFormCrudController extends CrudController
         // $this->crud->setShowView('order.show');
     }
 
-    
+
 
     /**
      * Define what happens when the List operation is loaded.
@@ -48,7 +48,7 @@ class SalesFormCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        
+
 
          $this->crud->addColumn([
             'name' => 'user_id',
@@ -70,21 +70,26 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addColumn([
             'name'            => 'farmer_name',
-            'label'           => "Nama pelaku utama",
+            'label'           => "Nama Pelaku Utama",
             'type'            => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'id_number',
-            'label'           => "Nomor KTP",
+            'name'            => 'id_address',
+            'label'           => "Jalan",
             'type'            => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'phone_number',
-            'label'           => "Nomor HP Petani",
-            'type'            => 'text',
-            'hint'            => '08XXXXXXXXXX',
+            'name'            => 'rt',
+            'label'           => "RT",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addColumn([
+            'name'            => 'rw',
+            'label'           => "RW",
+            'type'            => 'number',
         ]);
 
         $this->crud->addColumn([
@@ -142,22 +147,19 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rt',
-            'label'           => "RT",
+            'name'            => 'id_number',
+            'label'           => "NIK",
             'type'            => 'number',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rw',
-            'label'           => "RW",
-            'type'            => 'number',
-        ]);
-
-        $this->crud->addColumn([
-            'name'            => 'id_address',
-            'label'           => "Alamat",
+            'name'            => 'phone_number',
+            'label'           => "Nomor HP Petani",
             'type'            => 'text',
+            'hint'            => '08XXXXXXXXXX',
         ]);
+
+
 
         // $this->crud->addColumn([
         //     'label' => "Foto",
@@ -173,7 +175,7 @@ class SalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name'            => 'site_address',
             'label'           => "Alamat Kolam",
-            'type'            => 'address_algolia',
+            'type'            => 'text',
         ]);
 
         $this->crud->addColumn([
@@ -187,7 +189,7 @@ class SalesFormCrudController extends CrudController
             'label'           => "RW",
             'type'            => 'number',
         ]);
-        
+
         $this->crud->addColumn([
             'name'            => 'pool_province_id',
             'label'           => "Provinsi Alamat Kolam",
@@ -256,7 +258,7 @@ class SalesFormCrudController extends CrudController
 
          $this->crud->addColumn([
             'name'            => 'lenght_effort',
-            'label'           => "Lama Usaha(Bulan)",
+            'label'           => "Lama Usaha",
             'type'            => 'number',
         ]);
 
@@ -286,8 +288,15 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addColumn([
             'name'            => 'yields',
-            'label'           => "Hasil Panen Ikan/Kg",
+            'label'           => "Hasil Panen/Kg",
             'type'            => 'number',
+        ]);
+
+        // penjualan hasil ikan
+        $this->crud->addColumn([
+            'name'            => 'fish_sell_to',
+            'label'           => "Penjualan Hasil Ikan",
+            'type'            => 'text',
         ]);
 
         $this->crud->addColumn([
@@ -295,7 +304,7 @@ class SalesFormCrudController extends CrudController
             'label'           => "Merk Pakan Ikan",
             'type'            => 'text',
         ]);
-        
+
         $this->crud->addColumn([
             'name'            => 'fish_food_type',
             'label'           => "Tipe Pakan Ikan",
@@ -311,13 +320,13 @@ class SalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name'           => 'fish_food_price',
             'label'          => "Harga Pakan Ikan/Kg",
-            'type'           => 'number'
+            'type'           => 'text'
         ]);
 
         $this->crud->addColumn([
             'name'           => 'fish_food_needs',
-            'label'          => "Kebutuhan Pakan Ikan/Kg",
-            'type'           => 'number'
+            'label'          => "Kebutuhan Pakan/Siklus",
+            'type'           => 'text'
         ]);
 
         $this->crud->addColumn([
@@ -341,12 +350,12 @@ class SalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name'      => 'harvest_cost' ,
             'label'     => 'Biaya Panen',
-            'type'      => 'number'
+            'type'      => 'text'
         ]);
 
         $this->crud->addColumn([
             'name'      => 'harvest_method',
-            'label'     => 'Proses panen',
+            'label'     => 'Proses Panen',
             'type'      => 'text'
         ]);
 
@@ -372,7 +381,7 @@ class SalesFormCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SalesFormRequest::class);
-        $this->crud->removeSaveActions(['save_and_back','save_and_new','save_and_edit']);
+        $this->crud->removeSaveActions(['save_and_preview','save_and_edit']);
 
         $this->crud->addField([
             'name' => 'user_id',
@@ -381,7 +390,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name' => 'suveyor_phone_number',
+            'name' => 'surveyor_phone_number',
             'type' => 'hidden',
             'value' => Auth::user()->phone
         ]);
@@ -394,21 +403,26 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'farmer_name',
-            'label'           => "Nama pelaku utama",
+            'label'           => "Nama Pelaku Utama",
             'type'            => 'text',
         ]);
 
         $this->crud->addField([
-            'name'            => 'id_number',
-            'label'           => "Nomor KTP",
+            'name'            => 'id_address',
+            'label'           => "Jalan",
             'type'            => 'text',
         ]);
 
         $this->crud->addField([
-            'name'            => 'phone_number',
-            'label'           => "Nomor HP Petani",
-            'type'            => 'text',
-            'hint'            => '08XXXXXXXXXX',
+            'name'            => 'rt',
+            'label'           => "RT",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
+            'name'            => 'rw',
+            'label'           => "RW",
+            'type'            => 'number',
         ]);
 
         $this->crud->addField([
@@ -466,21 +480,16 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'rt',
-            'label'           => "RT",
+            'name'            => 'id_number',
+            'label'           => "NIK",
             'type'            => 'number',
         ]);
 
         $this->crud->addField([
-            'name'            => 'rw',
-            'label'           => "RW",
-            'type'            => 'number',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'id_address',
-            'label'           => "Alamat",
+            'name'            => 'phone_number',
+            'label'           => "Nomor HP Petani",
             'type'            => 'text',
+            'hint'            => '08XXXXXXXXXX',
         ]);
 
         // $this->crud->addField([
@@ -497,7 +506,7 @@ class SalesFormCrudController extends CrudController
         $this->crud->addField([
             'name'            => 'site_address',
             'label'           => "Alamat Kolam",
-            'type'            => 'address_algolia',
+            'type'            => 'text',
         ]);
 
         $this->crud->addField([
@@ -511,7 +520,7 @@ class SalesFormCrudController extends CrudController
             'label'           => "RW",
             'type'            => 'number',
         ]);
-        
+
         $this->crud->addField([
             'name'            => 'pool_province_id',
             'label'           => "Provinsi Alamat Kolam",
@@ -567,6 +576,12 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name'            => 'pool_qty',
+            'label'           => "Jumlah Kolam",
+            'type'            => 'number',
+        ]);
+
+        $this->crud->addField([
             'name'            => 'pokdakan_name',
             'label'           => "Nama Kelompok Pembudidaya Ikan(POKDAKAN)",
             'type'            => 'text',
@@ -580,19 +595,19 @@ class SalesFormCrudController extends CrudController
 
          $this->crud->addField([
             'name'            => 'lenght_effort',
-            'label'           => "Lama Usaha(Bulan)",
+            'label'           => "Lama Usaha",
             'type'            => 'select_from_array',
             'options'         => [
                 "0-1 Tahun" =>"0-1 Tahun" ,
                 "1-5 Tahun" =>"1-5 Tahun" ,
-                "> dari 5 Tahun" => "> dari 5 Tahun"
+                ">5 Tahun" => ">5 Tahun"
             ]
         ]);
 
         $this->crud->addField([
             'name'            => 'fish_type',
             'label'           => "Jenis Ikan",
-            'type'            => 'text',
+            'type'            => 'text', //multiple choice
         ]);
 
         $this->crud->addField([
@@ -604,7 +619,9 @@ class SalesFormCrudController extends CrudController
                 '50m-100m' => '50m-100m' ,
                 '100m-500m' => '100m-500m',
                 '500m-1000m' => '500m-1000m',
-            ]
+                '1000m-1HA' => '1000m-1HA',
+                '>1HA' => '>1HA',
+                ]
         ]);
 
         $this->crud->addField([
@@ -625,19 +642,20 @@ class SalesFormCrudController extends CrudController
                 '1-2 Bulan' => '1-2 Bulan',
                 '2-3 Bulan' => '2-3 Bulan',
                 '>3 Bulan' => '>3 Bulan'
-            ]  
+            ]
         ]);
 
         $this->crud->addField([
             'name'            => 'yields',
-            'label'           => "Hasil Panen Ikan/Kg",
+            'label'           => "Hasil Panen/Kg",
             'type'            => 'select_from_array',
             'options'         => [
                 '100-250kg' => '100-250kg' ,
                 '250-500kg' => '250-500kg' ,
                 '500-750kg' => '500-750kg' ,
                 '750-1000kg'=> '750-1000kg',
-                '> 1 Ton'  => '> 1 Ton'   
+                '> 1 Ton'  => '> 1 Ton',
+                'Lain-Lain'  => 'Lain-Lain'
             ]
         ]);
 
@@ -649,8 +667,8 @@ class SalesFormCrudController extends CrudController
                 'Perusahaan' => 'Perusahaan' ,
                 'Tengkulak'  => 'Tengkulak' ,
                 'Masyarakat Sekitar' => 'Masyarakat Sekitar' ,
-                'Others '  => 'Lain-Lain'
-            ]   
+                'Lain-Lain '  => 'Lain-Lain'
+            ]
         ]);
 
         $this->crud->addField([
@@ -663,10 +681,10 @@ class SalesFormCrudController extends CrudController
                 'M Sakti'     => 'M Sakti' ,
                 'CARGILL'     => 'CARGILL' ,
                 'JAPFA'       => 'JAPFA' ,
-                'Others'      => 'Lain-Lain'
+                'Lain-Lain'      => 'Lain-Lain'
             ]
         ]);
-        
+
         $this->crud->addField([
             'name'            => 'fish_food_type',
             'label'           => "Tipe Pakan Ikan",
@@ -676,7 +694,7 @@ class SalesFormCrudController extends CrudController
                 'Crumble'      => 'Crumble' ,
                 '1-2mm'        => '1-2mm' ,
                 '2-3mm'        => '2-3mm',
-                '> 3mm'        => '> 3mm'
+                '>3mm'        => '>3mm'
             ]
         ]);
 
@@ -695,15 +713,16 @@ class SalesFormCrudController extends CrudController
             'label'          => "Harga Pakan Ikan/Kg",
             'type'           => 'select_from_array' ,
             'options'        => [
-                '5000-10000'    => '5.000-10.000',
-                '10000-12000'   =>  '10.000-12.000',
-                '> 12000'       => '> 12.000'
+                '5.000-10.000'    => '5.000-10.000',
+                '10.000-12.000'   =>  '10.000-12.000',
+                '> 12000'       => '> 12.000',
+                'Lain-Lain' => 'Lain-Lain'
             ]
         ]);
 
         $this->crud->addField([
             'name'           => 'fish_food_needs',
-            'label'          => "Kebutuhan Pakan / Siklus",
+            'label'          => "Kebutuhan Pakan/Siklus",
             'type'           => 'select_from_array' ,
             'options'        => [
                 '100-250kg' => '100-250kg',
@@ -731,7 +750,7 @@ class SalesFormCrudController extends CrudController
                 'Sendiri'   => 'Sendiri' ,
                 'Bank'      => 'Bank' ,
                 'Koperasi'  => 'Koperasi' ,
-                'Others'    => 'Lain-Lain'
+                'Lain-Lain'    => 'Lain-Lain'
             ]
         ]);
 
@@ -740,9 +759,9 @@ class SalesFormCrudController extends CrudController
             'label'     => 'Asal Benih Ikan',
             'type'      => 'select_from_array',
             'options'   => [
-                'Lokal'  => 'Lokal' ,
+                'Lokal/Sukabumi'  => 'Lokal/Sukabumi' ,
                 'Luar Sukabumi' => 'Luar Sukabumi' ,
-                'Others'    => 'Lain-lain'
+                'Lain-Lain'    => 'Lain-lain'
             ]
         ]);
 
@@ -751,7 +770,7 @@ class SalesFormCrudController extends CrudController
             'label'     => 'Biaya Panen',
             'type'      => 'select_from_array' ,
             'options'   => [
-                '< 1.000.000'           => '< 1.000.000' ,
+                '<1.000.000'           => '<1.000.000' ,
                 '1.000.000 - 5.000.000' => '1.000.000 - 5.000.000' ,
                 '>5.000.000'            => '>5.000.000'
             ]
@@ -764,7 +783,7 @@ class SalesFormCrudController extends CrudController
             'options'   => [
                 'Tradisional'   => 'Tradisional' ,
                 'Tim Panen'     => 'Tim Panen' ,
-                'Others'        => 'Lain-lain'
+                'Lain-Lain'        => 'Lain-lain'
             ]
         ]);
 
@@ -772,12 +791,6 @@ class SalesFormCrudController extends CrudController
             'name'            => 'description',
             'label'           => "Catatan",
             'type'            => 'textarea',
-        ]);
-
-        $this->crud->addField([
-            'name'            => 'pool_qty',
-            'label'           => "Jumlah Kolam",
-            'type'            => 'number',
         ]);
 
         /**
