@@ -605,9 +605,21 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'            => 'fish_type',
-            'label'           => "Jenis Ikan",
-            'type'            => 'text', //multiple choice
+                'name'        => 'fish_type',
+                'label'       => "Jenis Ikan",
+                'type'        => 'select2_from_array',
+                'options'     => [
+                    'Nila' => 'Nila',
+                    'Lele' => 'Lele',
+                    'Gurame' => 'Gurame',
+                    'Emas' => 'Emas',
+                    'Koi' => 'Koi',
+                    'Bawal' => 'Bawal',
+                    'Baster' => 'Baster',
+                    'Lain-Lain' => 'Lain-Lain'
+                ],
+                'allows_null' => false,
+                'allows_multiple' => true
         ]);
 
         $this->crud->addField([
