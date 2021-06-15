@@ -26,6 +26,9 @@ class SalesForm extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $casts = [
+        'fish_type' => 'array'
+    ];
 
     /*
     |--------------------------------------------------------------------------

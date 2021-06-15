@@ -13,9 +13,9 @@ class UpdateTableSalesForm extends Migration
      */
     public function up()
     {
-        Schema::table('sales_forms', function(Blueprint $table) { 
+        Schema::table('sales_forms', function(Blueprint $table) {
             $table->string('surveyor_id')->nullable();
-            $table->integer('surveyor_phone_number')->nullable();
+            $table->string('surveyor_phone_number')->nullable();
             $table->date('survey_date')->nullable();
             $table->string('rt_pool')->nullable();
             $table->string('rw_pool')->nullable();
@@ -25,7 +25,7 @@ class UpdateTableSalesForm extends Migration
             $table->string('pool_village_id')->nullable();
             $table->string('pokdakan_name')->nullable();
             $table->string('position_in_organization')->nullable();
-            $table->integer('lenght_effort')->nullable();
+            $table->string('lenght_effort')->nullable();
             $table->string('fish_type')->nullable();
             $table->string('pool_area')->nullable();
             $table->string('pool_type')->nullable();
@@ -40,7 +40,7 @@ class UpdateTableSalesForm extends Migration
             $table->string('fish_seed_source')->nullable();
             $table->string('fish_mantaince_period')->nullable();
             $table->string('harvest_cost')->nullable();
-            $table->string('harvest_method')->nullable();        
+            $table->string('harvest_method')->nullable();
         });
     }
 
@@ -53,7 +53,7 @@ class UpdateTableSalesForm extends Migration
     {
         Schema::table('sales_forms', function(Blueprint $table) {
             $table->string('surveyor_id')->nullable();
-            $table->integer('surveyor_phone_number')->nullable();
+            $table->string('surveyor_phone_number')->nullable();
             $table->date('survey_date')->nullable();
             $table->string('rt_pool')->nullable();
             $table->string('rw_pool')->nullable();
@@ -63,7 +63,7 @@ class UpdateTableSalesForm extends Migration
             $table->string('pool_village_id')->nullable();
             $table->string('pokdakan_name')->nullable();
             $table->string('position_in_organization')->nullable();
-            $table->integer('lenght_effort')->nullable();
+            $table->string('lenght_effort')->nullable();
             $table->string('fish_type')->nullable();
             $table->string('pool_area')->nullable();
             $table->string('pool_type')->nullable();
@@ -78,7 +78,7 @@ class UpdateTableSalesForm extends Migration
             $table->string('fish_seed_source')->nullable();
             $table->string('fish_mantaince_period')->nullable();
             $table->string('harvest_cost')->nullable();
-            $table->string('harvest_method')->nullable();        
+            $table->string('harvest_method')->nullable();
         });
     }
 }

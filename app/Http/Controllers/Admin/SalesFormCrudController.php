@@ -8,8 +8,13 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\DB;
 use App\Models\SalesForm;
 use App\Jobs\ProcessResizeFormImage;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\Village;
 use App\User;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 /**
@@ -48,18 +53,24 @@ class SalesFormCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-
+        $this->crud->enableExportButtons();
 
          $this->crud->addColumn([
             'name' => 'user_id',
-            'type' => 'hidden',
-            'value' => Auth::id()
+            'label' => 'Nama Surveyor',
+            'type' => 'relationship',
+            'entity' => 'user',
+            'attribute' => 'name',
+            'model' => 'App\Models\User'
         ]);
 
         $this->crud->addColumn([
-            'name' => 'suveyor_phone_number',
-            'type' => 'hidden',
-            'value' => Auth::user()->phone
+            'name' => 'surveyor_phone_number',
+            'label' => 'No.Tlp Surveyor',
+            'type' => 'relationship',
+            'entity' => 'user',
+            'attribute' => 'phone',
+            'model' => 'App\Models\User'
         ]);
 
         $this->crud->addColumn([
@@ -69,300 +80,266 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'farmer_name',
-            'label'           => "Nama Pelaku Utama",
-            'type'            => 'text',
+            'name' => 'farmer_name',
+            'label' => "Nama Pelaku Utama",
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'id_address',
-            'label'           => "Jalan",
-            'type'            => 'text',
+            'name' => 'id_address',
+            'label' => "Jalan",
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rt',
-            'label'           => "RT",
-            'type'            => 'number',
+            'name' => 'rt',
+            'label' => "RT",
+            'type' => 'number'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rw',
-            'label'           => "RW",
-            'type'            => 'number',
+            'name' => 'rw',
+            'label' => "RW",
+            'type' => 'number'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'province_id',
-            'label'           => "Provinsi",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'province',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Provinsi',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/province'),
-            'model'           => 'App\Models\Province',
+            'name' => 'village_id',
+            'label' => "Kel/Desa",
+            'type' => 'relationship',
+            'entity' => 'village',
+            'attribute' => 'name',
+            'model' => 'App\Models\Village'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'regency_id',
-            'label'           => "Kota",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'regency',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kab/Kota',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/regency'),
-            'model'           => 'App\Models\Regency',
-            'dependencies'    => ['province_id'],
-            'include_all_form_fields' => true,
+            'name' => 'district_id',
+            'label' => "Kec",
+            'type' => 'relationship',
+            'entity' => 'district',
+            'attribute' => 'name',
+            'model' => 'App\Models\District'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'district_id',
-            'label'           => "Kecamatan",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'district',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kecamatan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/district'),
-            'model'           => 'App\Models\District',
-            'dependencies'    => ['regency_id'] ,
-            'include_all_form_fields' => true,
+            'name' => 'regency_id',
+            'label' => "Kab/Kota",
+            'type' => 'relationship',
+            'entity' => 'regency',
+            'attribute' => 'name',
+            'model' => 'App\Models\Regency'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'village_id',
-            'label'           => "Kel/Desa",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'village',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kelurahan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/village'),
-            'model'           => 'App\Models\Village',
-            'dependencies'    => ['district_id'] ,
-            'include_all_form_fields' => true,
+            'name' => 'province_id',
+            'label' => "Provinsi",
+            'type' => 'relationship',
+            'entity' => 'province',
+            'attribute' => 'name',
+            'model' => 'App\Models\Province'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'id_number',
-            'label'           => "NIK",
-            'type'            => 'number',
+            'name' => 'id_number',
+            'label' => "NIK",
+            'type' => 'number',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'phone_number',
-            'label'           => "Nomor HP Petani",
-            'type'            => 'text',
-            'hint'            => '08XXXXXXXXXX',
-        ]);
-
-
-
-        // $this->crud->addColumn([
-        //     'label' => "Foto",
-        //     'name' => "idpict",
-        //     'type' => 'image',
-        //     'crop' => true, // set to true to allow cropping, false to disable
-        //     'upload' => true,
-        //     'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-        //     'disk'      => 'public', // in case you need to show images from a different disk
-        //     // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        // ]);
-
-        $this->crud->addColumn([
-            'name'            => 'site_address',
-            'label'           => "Alamat Kolam",
-            'type'            => 'text',
+            'name' => 'phone_number',
+            'label' => "Nomor HP Petani",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rt_pool',
-            'label'           => "RT",
-            'type'            => 'number',
+            'name' => 'site_address',
+            'label' => "Alamat Kolam",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'rw_pool',
-            'label'           => "RW",
-            'type'            => 'number',
+            'name' => 'rt_pool',
+            'label' => "RT Kolam",
+            'type' => 'number',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'pool_province_id',
-            'label'           => "Provinsi Alamat Kolam",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'province',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Provinsi',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/province'),
-            'model'           => 'App\Models\Province',
+            'name' => 'rw_pool',
+            'label' => "RW Kolam",
+            'type' => 'number',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'pool_regency_id',
-            'label'           => "Kota Alamat Kolam",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'regency',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kab/Kota',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/regency'),
-            'model'           => 'App\Models\Regency',
-            'dependencies'    => ['province_id'],
-            'include_all_form_fields' => true,
+            'name'     => 'pool_village_id',
+            'label'    => 'Kel/Desa Lokasi Kolam',
+            'type'     => 'closure',
+            'function' => function($entry) {
+                if (!empty($entry->pool_village_id)) {
+                    return Village::find($entry->pool_village_id)->name;
+                } else {
+                    return "-";
+                }
+            }
+        ],);
+
+        $this->crud->addColumn([
+            'name'     => 'pool_district_id',
+            'label'    => 'Kec Lokasi Kolam',
+            'type'     => 'closure',
+            'function' => function($entry) {
+                if (!empty($entry->pool_district_id)) {
+                    return District::find($entry->pool_district_id)->name;
+                } else {
+                    return "-";
+                }
+            }
+        ],);
+
+        $this->crud->addColumn([
+            'name'     => 'pool_regency_id',
+            'label'    => 'Kab/Kota Lokasi Kolam',
+            'type'     => 'closure',
+            'function' => function($entry) {
+                if (!empty($entry->pool_regency_id)) {
+                    return Regency::find($entry->pool_regency_id)->name;
+                } else {
+                    return "-";
+                }
+            }
+        ],);
+
+        $this->crud->addColumn([
+            'name'     => 'pool_province_id',
+            'label'    => 'Provinsi Lokasi Kolam',
+            'type'     => 'closure',
+            'function' => function($entry) {
+                if (!empty($entry->pool_province_id)) {
+                    return Province::find($entry->pool_province_id)->name;
+                } else {
+                    return "-";
+                }
+
+            }
+        ],);
+
+        $this->crud->addColumn([
+                'name' => 'pokdakan_name',
+                'label' => "Nama Kelompok Pembudidaya Ikan(POKDAKAN)",
+                'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'pool_district_id',
-            'label'           => "Kecamatan Alamat Kolam",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'district',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kecamatan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/district'),
-            'model'           => 'App\Models\District',
-            'dependencies'    => ['regency_id'] ,
-            'include_all_form_fields' => true,
-        ]);
-
-        $this->crud->addColumn([
-            'name'            => 'pool_village_id',
-            'label'           => "Kel/Desa Alamat Kolam",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'village',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kelurahan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/village'),
-            'model'           => 'App\Models\Village',
-            'dependencies'    => ['district_id'] ,
-            'include_all_form_fields' => true,
-        ]);
-
-        $this->crud->addColumn([
-            'name'            => 'pokdakan_name',
-            'label'           => "Nama Kelompok Pembudidaya Ikan(POKDAKAN)",
-            'type'            => 'text',
-        ]);
-
-        $this->crud->addColumn([
-            'name'            => 'position_in_organization',
-            'label'           => "Posisi Dikelompok",
-            'type'            => 'text',
+            'name' => 'position_in_organization',
+            'label' => "Posisi Dikelompok",
+            'type' => 'text',
         ]);
 
          $this->crud->addColumn([
-            'name'            => 'lenght_effort',
-            'label'           => "Lama Usaha",
-            'type'            => 'number',
+            'name' => 'lenght_effort',
+            'label' => "Lama Usaha",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'fish_type',
-            'label'           => "Jenis Ikan",
-            'type'            => 'text',
+            'name' => 'fish_type',
+            'label' => "Jenis Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'pool_area',
-            'label'           => "Luas Lahan",
-            'type'            => 'number',
+            'name' => 'pool_area',
+            'label' => "Luas Lahan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'pool_type',
-            'label'           => "Jenis Kolam",
-            'type'            => 'text',
+            'name' => 'pool_type',
+            'label' => "Jenis Kolam",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'fish_mantaince_period',
-            'label'           => "Masa Pemeliharaan Ikan",
-            'type'            => 'text',
+            'name' => 'fish_mantaince_period',
+            'label' => "Masa Pemeliharaan Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'yields',
-            'label'           => "Hasil Panen/Kg",
-            'type'            => 'number',
-        ]);
-
-        // penjualan hasil ikan
-        $this->crud->addColumn([
-            'name'            => 'fish_sell_to',
-            'label'           => "Penjualan Hasil Ikan",
-            'type'            => 'text',
+            'name' => 'yields',
+            'label' => "Hasil Panen/Kg",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'fish_food_brand',
-            'label'           => "Merk Pakan Ikan",
-            'type'            => 'text',
+            'name' => 'fish_sell_to',
+            'label' => "Penjualan Hasil Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'fish_food_type',
-            'label'           => "Tipe Pakan Ikan",
-            'type'            => 'text',
+            'name' => 'fish_food_brand',
+            'label' => "Merk Pakan Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'fish_food_retrieval_system',
-            'label'           => "Sistem Pengambilan Pakan Ikan",
-            'type'            => 'text',
+            'name' => 'fish_food_type',
+            'label' => "Tipe Pakan Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'           => 'fish_food_price',
-            'label'          => "Harga Pakan Ikan/Kg",
-            'type'           => 'text'
+            'name' => 'fish_food_retrieval_system',
+            'label' => "Sistem Pengambilan Pakan Ikan",
+            'type' => 'text',
         ]);
 
         $this->crud->addColumn([
-            'name'           => 'fish_food_needs',
-            'label'          => "Kebutuhan Pakan/Siklus",
-            'type'           => 'text'
+            'name' => 'fish_food_price',
+            'label' => "Harga Pakan Ikan/Kg",
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'          => 'food_fish_payment_method',
-            'label'         => 'Sistem Pembayaran Pakan Ikan',
-            'type'          => 'text'
+            'name' => 'fish_food_needs',
+            'label' => "Kebutuhan Pakan/Siklus",
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'      => 'source_fund' ,
-            'label'     => 'Sumber Modal Usaha',
-            'type'      => 'text'
+            'name' => 'payment_method',
+            'label' => 'Sistem Pembayaran Pakan Ikan',
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'      => 'fish_seed_source' ,
-            'label'     => 'Asal Benih Ikan',
-            'type'      => 'text'
+            'name' => 'source_fund' ,
+            'label' => 'Sumber Modal Usaha',
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'      => 'harvest_cost' ,
-            'label'     => 'Biaya Panen',
-            'type'      => 'text'
+            'name' => 'fish_seed_source' ,
+            'label' => 'Asal Benih Ikan',
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'      => 'harvest_method',
-            'label'     => 'Proses Panen',
-            'type'      => 'text'
+            'name' => 'harvest_cost' ,
+            'label' => 'Biaya Panen',
+            'type' => 'text'
         ]);
 
         $this->crud->addColumn([
-            'name'            => 'description',
-            'label'           => "Catatan",
-            'type'            => 'textarea',
+            'name' => 'harvest_method',
+            'label' => 'Proses Panen',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => "Catatan",
+            'type' => 'textarea',
         ]);
 
         /**
@@ -492,17 +469,6 @@ class SalesFormCrudController extends CrudController
             'hint'            => '08XXXXXXXXXX',
         ]);
 
-        // $this->crud->addField([
-        //     'label' => "Foto",
-        //     'name' => "idpict",
-        //     'type' => 'image',
-        //     'crop' => true, // set to true to allow cropping, false to disable
-        //     'upload' => true,
-        //     'aspect_ratio' => 2, // omit or set to 0 to allow any aspect ratio
-        //     'disk'      => 'public', // in case you need to show images from a different disk
-        //     // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
-        // ]);
-
         $this->crud->addField([
             'name'            => 'site_address',
             'label'           => "Alamat Kolam",
@@ -529,7 +495,7 @@ class SalesFormCrudController extends CrudController
             'attribute'       => 'name',
             'placeholder'     => 'Pilih Provinsi',
             'minimum_input_length' => 0,
-            'data_source'     => url('api/province'),
+            'data_source'     => url('api/province2'),
             'model'           => 'App\Models\Province',
         ]);
 
@@ -541,9 +507,9 @@ class SalesFormCrudController extends CrudController
             'attribute'       => 'name',
             'placeholder'     => 'Pilih Kab/Kota',
             'minimum_input_length' => 0,
-            'data_source'     => url('api/regency'),
+            'data_source'     => url('api/regency2'),
             'model'           => 'App\Models\Regency',
-            'dependencies'    => ['province_id'],
+            'dependencies'    => ['pool_province_id'],
             'include_all_form_fields' => true,
         ]);
 
@@ -555,9 +521,9 @@ class SalesFormCrudController extends CrudController
             'attribute'       => 'name',
             'placeholder'     => 'Pilih Kecamatan',
             'minimum_input_length' => 0,
-            'data_source'     => url('api/district'),
+            'data_source'     => url('api/district2'),
             'model'           => 'App\Models\District',
-            'dependencies'    => ['regency_id'] ,
+            'dependencies'    => ['pool_regency_id'] ,
             'include_all_form_fields' => true,
         ]);
 
@@ -569,9 +535,9 @@ class SalesFormCrudController extends CrudController
             'attribute'       => 'name',
             'placeholder'     => 'Pilih Kelurahan',
             'minimum_input_length' => 0,
-            'data_source'     => url('api/village'),
+            'data_source'     => url('api/village2'),
             'model'           => 'App\Models\Village',
-            'dependencies'    => ['district_id'] ,
+            'dependencies'    => ['pool_district_id'] ,
             'include_all_form_fields' => true,
         ]);
 
@@ -745,7 +711,7 @@ class SalesFormCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name'          => 'food_fish_payment_method',
+            'name'          => 'payment_method',
             'label'         => 'Sistem Pembayaran Pakan Ikan',
             'type'          => 'select_from_array' ,
             'options'       => [
@@ -821,5 +787,56 @@ class SalesFormCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $data = new SalesForm();
+        $data->user_id = $request->user_id;
+        $data->surveyor_phone_number = $request->surveyor_phone_number;
+        $data->survey_date = $request->survey_date;
+        $data->farmer_name = $request->farmer_name;
+        $data->id_address = $request->id_address;
+        $data->rt = $request->rt;
+        $data->rw = $request->rw;
+        $data->province_id = $request->province_id;
+        $data->regency_id = $request->regency_id;
+        $data->district_id = $request->district_id;
+        $data->village_id = $request->village_id;
+        $data->id_number = $request->id_number;
+        $data->phone_number = $request->phone_number;
+        $data->site_address = $request->site_address;
+        $data->rt_pool = $request->rt_pool;
+        $data->rw_pool = $request->rw_pool;
+        $data->pool_province_id = $request->pool_province_id;
+        $data->pool_regency_id = $request->pool_regency_id;
+        $data->pool_district_id = $request->pool_district_id;
+        $data->pool_village_id = $request->pool_village_id;
+        $data->pool_qty = $request->pool_qty;
+        $data->pokdakan_name = $request->pokdakan_name;
+        $data->position_in_organization = $request->position_in_organization;
+        $data->lenght_effort = $request->lenght_effort;
+        $data->fish_type = $request->fish_type;
+        $data->pool_area = $request->pool_area;
+        $data->pool_type = $request->pool_type;
+        $data->fish_mantaince_period = $request->fish_mantaince_period;
+        $data->yields = $request->yields;
+        $data->fish_sell_to = $request->fish_sell_to;
+        $data->fish_food_brand = $request->fish_food_brand;
+        $data->fish_food_type = $request->fish_food_type;
+        $data->fish_food_retrieval_system = $request->fish_food_retrieval_system;
+        $data->fish_food_price = $request->fish_food_price;
+        $data->fish_food_needs = $request->fish_food_needs;
+        $data->payment_method = $request->payment_method;
+        $data->source_fund = $request->source_fund;
+        $data->fish_seed_source = $request->fish_seed_source;
+        $data->harvest_cost = $request->harvest_cost;
+        $data->harvest_method = $request->harvest_method;
+        $data->description = $request->description;
+        dd($request->all());
+        $data->save();
+        return redirect(backpack_url('salesform'));
+
     }
 }

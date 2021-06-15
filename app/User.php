@@ -30,7 +30,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone',
     ];
 
     /**
@@ -52,7 +52,7 @@ class User extends Authenticatable implements JWTSubject
         'id' => 'string',
         'active' => 'boolean',
     ];
-    
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -72,7 +72,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    
+
     public function province()
     {
         return $this->belongsTo('App\Models\Province');
@@ -90,6 +90,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function routeNotificationForExpoPushNotifications()
     {
-        
+
     }
 }
