@@ -172,15 +172,21 @@ class SalesFormCrudController extends CrudController
         $this->crud->addColumn([
             'name'     => 'pool_village_id',
             'label'    => 'Kel/Desa Lokasi Kolam',
-            'type'     => 'closure',
-            'function' => function($entry) {
-                if (!empty($entry->pool_village_id)) {
-                    return Village::find($entry->pool_village_id)->name;
-                } else {
-                    return "-";
-                }
-            }
-        ],);
+            'type'     => 'text',
+        ]);
+
+        // $this->crud->addColumn([
+        //     'name'     => 'pool_village_id',
+        //     'label'    => 'Kel/Desa Lokasi Kolam',
+        //     'type'     => 'closure',
+        //     'function' => function($entry) {
+        //         if (!empty($entry->pool_village_id)) {
+        //             return Village::find($entry->pool_village_id)->name;
+        //         } else {
+        //             return "-";
+        //         }
+        //     }
+        // ],);
 
         $this->crud->addColumn([
             'name'     => 'pool_district_id',
@@ -221,6 +227,24 @@ class SalesFormCrudController extends CrudController
 
             }
         ],);
+
+        // $this->crud->addColumn([
+        //     'name'     => 'pool_district_id',
+        //     'label'    => 'Kec Lokasi Kolam',
+        //     'type'     => 'text',
+        // ]);
+
+        // $this->crud->addColumn([
+        //     'name'     => 'pool_regency_id',
+        //     'label'    => 'Kab/Kota Lokasi Kolam',
+        //     'type'     => 'text',
+        // ]);
+
+        // $this->crud->addColumn([
+        //     'name'     => 'pool_province_id',
+        //     'label'    => 'Provinsi Lokasi Kolam',
+        //     'type'     => 'text',
+        //     ]);
 
         $this->crud->addColumn([
                 'name' => 'pokdakan_name',
@@ -416,7 +440,7 @@ class SalesFormCrudController extends CrudController
 
         $this->crud->addField([
             'name'            => 'regency_id',
-            'label'           => "Kota",
+            'label'           => "Kota/Kab",
             'type'            => 'select2_from_ajax',
             'entity'          => 'regency',
             'attribute'       => 'name',
@@ -442,18 +466,32 @@ class SalesFormCrudController extends CrudController
             'include_all_form_fields' => true,
         ]);
 
+        // $this->crud->addField([
+        //     'name'            => 'village_id',
+        //     'label'           => "Kel/Desa",
+        //     'type'            => 'select2_from_ajax',
+        //     'entity'          => 'village',
+        //     'attribute'       => 'name',
+        //     'placeholder'     => 'Pilih Kelurahan',
+        //     'minimum_input_length' => 0,
+        //     'data_source'     => url('api/village'),
+        //     'model'           => 'App\Models\Village',
+        //     'dependencies'    => ['district_id'] ,
+        //     'include_all_form_fields' => true,
+        // ]);
+
         $this->crud->addField([
             'name'            => 'village_id',
             'label'           => "Kel/Desa",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'village',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kelurahan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/village'),
-            'model'           => 'App\Models\Village',
-            'dependencies'    => ['district_id'] ,
-            'include_all_form_fields' => true,
+            'type'            => 'text',
+            // 'entity'          => 'village',
+            // 'attribute'       => 'name',
+            // 'placeholder'     => 'Pilih Kelurahan',
+            // 'minimum_input_length' => 0,
+            // 'data_source'     => url('api/village'),
+            // 'model'           => 'App\Models\Village',
+            // 'dependencies'    => ['district_id'] ,
+            // 'include_all_form_fields' => true,
         ]);
 
         $this->crud->addField([
@@ -527,18 +565,42 @@ class SalesFormCrudController extends CrudController
             'include_all_form_fields' => true,
         ]);
 
+        // $this->crud->addField([
+        //     'name'            => 'pool_village_id',
+        //     'label'           => "Kel/Desa Alamat Kolam",
+        //     'type'            => 'select2_from_ajax',
+        //     'entity'          => 'village',
+        //     'attribute'       => 'name',
+        //     'placeholder'     => 'Pilih Kelurahan',
+        //     'minimum_input_length' => 0,
+        //     'data_source'     => url('api/village2'),
+        //     'model'           => 'App\Models\Village',
+        //     'dependencies'    => ['pool_district_id'] ,
+        //     'include_all_form_fields' => true,
+        // ]);
+
+        // $this->crud->addField([
+        //     'name'            => 'pool_province_id',
+        //     'label'           => "Provinsi Alamat Kolam",
+        //     'type'            => 'text',
+        // ]);
+
+        // $this->crud->addField([
+        //     'name'            => 'pool_regency_id',
+        //     'label'           => "Kota/Kab Alamat Kolam",
+        //     'type'            => 'text',
+        // ]);
+
+        // $this->crud->addField([
+        //     'name'            => 'pool_district_id',
+        //     'label'           => "Kecamatan Alamat Kolam",
+        //     'type'            => 'text',
+        // ]);
+
         $this->crud->addField([
             'name'            => 'pool_village_id',
             'label'           => "Kel/Desa Alamat Kolam",
-            'type'            => 'select2_from_ajax',
-            'entity'          => 'village',
-            'attribute'       => 'name',
-            'placeholder'     => 'Pilih Kelurahan',
-            'minimum_input_length' => 0,
-            'data_source'     => url('api/village2'),
-            'model'           => 'App\Models\Village',
-            'dependencies'    => ['pool_district_id'] ,
-            'include_all_form_fields' => true,
+            'type'            => 'text',
         ]);
 
         $this->crud->addField([
@@ -834,7 +896,7 @@ class SalesFormCrudController extends CrudController
         $data->harvest_cost = $request->harvest_cost;
         $data->harvest_method = $request->harvest_method;
         $data->description = $request->description;
-        dd($request->all());
+        // dd($request->all());
         $data->save();
         return redirect(backpack_url('salesform'));
 
